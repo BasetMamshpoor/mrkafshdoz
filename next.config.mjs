@@ -1,6 +1,28 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
+  async redirects() {
+    return [
+      {
+        source: '/s',
+        destination: '/',
+        permanent: true,
+      }
+    ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/category-:slug-apparel',
+        destination: '/category/:slug/apparel',
+      },
+      {
+        source: '/category-:slug',
+        destination: '/category/:slug'
+      },
+    ]
+  },
 };
 
 export default nextConfig;

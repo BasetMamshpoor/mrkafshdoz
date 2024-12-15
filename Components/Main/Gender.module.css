@@ -1,0 +1,38 @@
+.gender {
+  margin: 3rem 0;
+}
+.tab_list {
+  font-size: 18px;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  direction: rtl;
+}
+.tabs {
+  position: relative;
+  cursor: pointer;
+  margin: 0 1rem;
+  padding: 1rem;
+}
+.active_tabs::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% + 2px);
+  height: 3px;
+  background: #5893f1;
+}
+@media (max-width: 599.98px) {
+  .gender {
+    margin: 1rem 0;
+  }
+  .tab_list {
+    font-size: 14px;
+    padding: 0 0.5rem;
+  }
+}
