@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import style from 'Components/Profile/Information/Password.module.css'
+import style from 'Components/Information/Password.module.css'
 import { useRouter } from 'next/router';
 import { Authorization } from 'providers/AuthorizationProvider';
 import Link from 'next/link';

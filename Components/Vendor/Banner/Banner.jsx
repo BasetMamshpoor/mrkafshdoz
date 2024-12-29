@@ -28,7 +28,7 @@ const Banner = () => {
                     <div className={style.banners}>
                         {!!firstLine ? firstLine.map(b => {
                             return (
-                                <div className={style.banner}>
+                                <div key={b.id} className={style.banner}>
                                     <Link href={b.link} className={style.link}>
                                         <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={b.src} alt="" />
                                     </Link>
@@ -42,7 +42,7 @@ const Banner = () => {
                     <div className={style.banners}>
                         {!!secondLine ? secondLine.map(b => {
                             return (
-                                <div className={style.lgBanner}>
+                                <div  key={b.id} className={style.lgBanner}>
                                     <Link href={b.link} className={style.link}>
                                         <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={b.src} alt="" />
                                     </Link>

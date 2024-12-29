@@ -9,14 +9,11 @@ const Banner = () => {
         <>
             <div className={style.Banner}>
                 <div className="container">
-                    <div className={style.wrapper}>
+                    <div className='grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center gap-2'>
                         {banners && banners.map(b => {
-                            return (
-                                <div className={style.baner} key={b.id}>
-                                    <Link href={b.link} className={style.link}>
-                                        <Image src={b.src} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} width={100} height={100} alt='' />
-                                    </Link>
-                                </div>)
+                            return (<Link href={b.link} className='flex items-center justify-center rounded-lg overflow-hidden h-fit' key={b.id}>
+                                <Image src={b.src} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} width={0} height={0} sizes='100vw' className='w-full h-full object-contain' alt='' />
+                            </Link>)
                         })}
                     </div>
                 </div>

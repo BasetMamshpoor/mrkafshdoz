@@ -19,7 +19,7 @@ import { Authorization } from 'providers/AuthorizationProvider';
 const Form = () => {
     const { push } = useRouter()
 
-    const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [] })
+    const [product, setProduct] = useState({ category_id: null, colors: [], attributes: [], images: [] })
 
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0)
@@ -127,20 +127,8 @@ const Form = () => {
                         </div>
                         <div className={style.ICex11A_4}>
                             <div className={style.kctE_1Zq}>
-                                <div className={style.NbGvR}>
-                                    <div className={style.jCrxy}>
-                                        <Input type='text' placeholder='رنگ' name='color' result={handleResult} value={product.color} />
-                                        <Input type='color' name='colorCode' result={handleResult} value={product.colorCode} />
-                                    </div>
-                                    <div className={style.Fcximy}>
-                                        {touch.color && errors.color && <span className={style.errors_span_input}>{errors.color}</span>}
-                                        {touch.colorCode && errors.colorCode && <span className={style.errors_span_input}>{errors.colorCode}</span>}
-                                    </div>
-                                </div>
                                 <Size setProduct={setProduct} errors={errors} touch={touch} />
-                            </div>
-                            <div className={style.vExpkqZu}>
-                                <SizesList setProduct={setProduct} sizes={product.sizes} />
+                                <SizesList setProduct={setProduct} colors={product.colors} />
                             </div>
                         </div>
                         <div className={style.bGCzu_wq}>

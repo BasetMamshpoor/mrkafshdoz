@@ -162,3 +162,14 @@
     height: 30px;
   }
 }
+.colorSection {
+  display: flex;
+  justify-content: space-between;
+}
+.sizeSection {
+  margin-top: 10px;
+}
+.errors_span_input {
+  color: red;
+  font-size: 12px;
+}

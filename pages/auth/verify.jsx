@@ -8,25 +8,21 @@ import { Functions } from 'providers/FunctionsProvider';
 import Loading from 'Components/Loading';
 import { Authorization } from 'providers/AuthorizationProvider';
 import Timer from 'Components/Timer';
+import { InputOtp } from '@nextui-org/react';
 
-const verify = () => {
+const Verify = () => {
     const { query, push } = useRouter()
     const { email, forword } = query
 
     const Error = useRef()
-    const inputRefs = Array.from({ length: 6 }, () => useRef(null));
 
     const { SwalStyled } = useContext(Functions)
     const { getTokens, getUserInformation } = useContext(Authorization)
 
+    const [value, setValue] = useState('')
     const [response, setResponse] = useState({ expires_in: 0 })
     const [loadin, setLoadin] = useState(true)
     const [sendAgain, setSendAgain] = useState(0)
-    const [KEYBOARDS] = useState({
-        backspace: 8,
-        arrowLeft: 37,
-        arrowRight: 39,
-    });
 
     useEffect(() => {
         if (!query.email)
@@ -42,67 +38,15 @@ const verify = () => {
                     .catch(err => {
                         setLoadin(false)
                         setResponse({ expires_in: 0 })
-                        SwalStyled.fire('ارسال نشد', err.response.data.message, 'error')
+                        SwalStyled.fire('ارسال نشد', err.response?.data.message, 'error')
                     })
             }
             send_otp()
         }
     }, [sendAgain])
-    const handleInput = (e, index) => {
-        const nextInput = inputRefs[index + 1];
-        if (nextInput && e.target.value) {
-            nextInput.current.focus();
-            if (nextInput.current.value) {
-                nextInput.current.select();
-            }
-        }
-    };
-
-    const handlePaste = (e) => {
-        e.preventDefault();
-        const paste = e.clipboardData.getData('text');
-        inputRefs.forEach((inputRef, i) => {
-            inputRef.current.value = paste[i] || '';
-        });
-    };
-
-    const handleBackspace = (e, index) => {
-        if (!!e.target.value) {
-            e.target.value = '';
-            return;
-        } else handleArrowLeft(index)
-    };
-
-    const handleArrowLeft = (index) => {
-        const previousInput = inputRefs[index - 1];
-        if (previousInput)
-            previousInput.current.focus();
-    };
-
-    const handleArrowRight = (index) => {
-        const nextInput = inputRefs[index + 1];
-        if (nextInput)
-            nextInput.current.focus();
-    };
-
-    const handleKeyDown = (e, index) => {
-        switch (e.keyCode) {
-            case KEYBOARDS.backspace:
-                handleBackspace(e, index);
-                break;
-            case KEYBOARDS.arrowLeft:
-                handleArrowLeft(index);
-                break;
-            case KEYBOARDS.arrowRight:
-                handleArrowRight(index);
-                break;
-            default:
-        }
-    };
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const value = inputRefs.map(input => input.current.value).join('')
         if (value.length < 6) {
             Error.current.innerText = 'طول کد 6 واحد است.'
         } else {
@@ -146,29 +90,23 @@ const verify = () => {
                                 رمز یکبار مصرف ارسال شده به ایمیل را وارد کنید.
                             </div>
                             <form className={style.form} onSubmit={handleSubmit}>
-                                <div className={style.verify}>
-                                    {inputRefs.map((inputRef, index) => (
-                                        <input
-                                            key={index}
-                                            ref={inputRef}
-                                            type="number"
-                                            maxLength="1"
-                                            pattern="[0-9]"
-                                            className={style.form_control}
-                                            onInput={(e) => handleInput(e, index)}
-                                            onKeyDown={e => handleKeyDown(e, index)}
-                                            onPaste={index === 0 ? e => handlePaste(e) : e => e.preventDefault()}
-                                        />
-                                    ))}
+                                <div dir='ltr'>
+                                    <InputOtp
+                                        classNames={{ base: 'w-full', segmentWrapper: 'justify-center w-full', segment: 'flex-[1_0_0] h-12' }}
+                                        length={6}
+                                        value={value}
+                                        onValueChange={setValue} />
                                 </div>
-                                <span className={style.error} ref={Error}></span>
-                                <div className={style.expire}>
-                                    <span>رمز را دريافت نکرده‌ايد؟ </span>
-                                    <Timer time={response.expires_in} withProgress={false} withHour={false}
-                                        message={<p className={style.sendAgain} onClick={e => {
-                                            setLoadin(true)
-                                            setSendAgain(Math.random())
-                                        }}>ارسال مجدد</p>} />
+                                <div className="flex flex-col gap-2">
+                                    <span className={style.error} ref={Error}></span>
+                                    <div className={style.expire}>
+                                        <span>رمز را دريافت نکرده‌ايد؟ </span>
+                                        <Timer time={response.expires_in} withProgress={false} withHour={false}
+                                            message={<p className={style.sendAgain} onClick={e => {
+                                                setLoadin(true)
+                                                setSendAgain(Math.random())
+                                            }}>ارسال مجدد</p>} />
+                                    </div>
                                 </div>
                                 <button className={style.btn}>ورود</button>
                             </form>
@@ -184,5 +122,5 @@ const verify = () => {
     );
 };
 
-export default verify;
+export default Verify;
 

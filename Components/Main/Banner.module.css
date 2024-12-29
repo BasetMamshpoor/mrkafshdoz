@@ -1,13 +1,6 @@
 .Banner {
   margin: 3rem 0;
 }
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
 .baner {
   flex: 0 0 calc(25% - 12px);
   box-shadow: 0 10px 10px 0px #0000002d;
@@ -30,9 +23,6 @@
 @media (max-width: 599.98px) {
   .Banner {
     margin: 1rem 0;
-  }
-  .wrapper {
-    gap: 5px;
   }
   .baner {
     flex: 0 0 calc(50% - 3px);

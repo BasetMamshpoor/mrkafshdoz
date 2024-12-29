@@ -16,7 +16,7 @@ import PrevSizes from './Sizes/PervSizes'
 import Cookies from 'js-cookie';
 
 const EditForm = ({ id, SwalStyled, setIsOpen, reload }) => {
-    const [product, setProduct] = useState({ category_id: null, sizes: [], attributes: [], images: [] })
+    const [product, setProduct] = useState({ category_id: null, colors: [], attributes: [], images: [] })
     const [state, setState] = useState()
 
     const [touch, setTouch] = useState({})
@@ -156,16 +156,6 @@ const EditForm = ({ id, SwalStyled, setIsOpen, reload }) => {
                         </div>
                         <div className={style.ICex11A_4}>
                             <div className={style.kctE_1Zq}>
-                                <div className={style.NbGvR}>
-                                    <div className={style.jCrxy}>
-                                        <Input type='text' placeholder='رنگ' name='color' result={handleResult} value={product.color} />
-                                        <Input type='color' name='colorCode' result={handleResult} value={product.colorCode} />
-                                    </div>
-                                    <div className={style.Fcximy}>
-                                        {touch.color && errors.color && <span className={style.errors_span_input}>{errors.color}</span>}
-                                        {touch.colorCode && errors.colorCode && <span className={style.errors_span_input}>{errors.colorCode}</span>}
-                                    </div>
-                                </div>
                                 <Size setProduct={setProduct} errors={errors} touch={touch} />
                             </div>
                             <div className={style.vExpkqZu}>

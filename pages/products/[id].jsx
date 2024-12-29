@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import {useEffect, useState} from 'react';
+import {useRouter} from 'next/router';
 import Specifications from 'Components/Detaile/Specifications';
 import Comments from 'Components/Detaile/Comments';
 import Stock from 'Components/Detaile/Stock';
 import DetaileSlider from 'Components/Slider/DetaileSlider'
 import style from './Detaile.module.css'
 import Attributes from 'Components/Detaile/Attributes';
-import { AiOutlineSafety, AiOutlineFieldTime } from 'react-icons/ai'
-import { BsTruck } from 'react-icons/bs'
+import {AiOutlineSafety, AiOutlineFieldTime} from 'react-icons/ai'
+import {BsTruck} from 'react-icons/bs'
 import Baner from 'Components/Detaile/Baner';
 import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
 import Breadcrumb from 'Components/Breadcrumb';
@@ -17,14 +17,27 @@ import OfferTime from 'Components/Detaile/OfferTime';
 const ProductDetaile = () => {
     const router = useRouter()
 
-    const { id } = router.query
-    const [data, setData, reload] = useGetPrivatRequest(`/products/show/${id}`)
+    const {id} = router.query
+    const [data] = useGetPrivatRequest(`/products/show/${id}`)
 
+    const [color, setColor] = useState({})
     const [size, setSize] = useState({})
 
     useEffect(() => {
-        if (!!data) setSize(data.product.sizes[0])
-    }, [data])
+        if (!!data && data.product.colors) {
+            const validColor = data.product.colors.find(color =>
+                color.sizes.some(size => size.stock > 0)
+            );
+
+            if (validColor) {
+                setColor(validColor);
+                const validSize = validColor.sizes.find(size => size.stock > 0);
+                if (validSize) {
+                    setSize(validSize);
+                }
+            }
+        }
+    }, [data]);
 
     return (
         <>
@@ -32,7 +45,7 @@ const ProductDetaile = () => {
                 {!!data ? <>
                     <section dir='rtl'>
                         <div className="container">
-                            <Breadcrumb breadcrumb={data.breadcrumb} />
+                            <Breadcrumb breadcrumb={data.breadcrumb}/>
                         </div>
                     </section>
 
@@ -44,26 +57,26 @@ const ProductDetaile = () => {
                                         <h1>{data.product.name}</h1>
                                     </div>
                                     <div className="row flex-grow-1">
-                                        <div className={`col-lg-${!!data.product.sizes.length ? '6' : '12'} ps-0`}>
-                                            <Attributes product={data.product} />
+                                        <div className={`col-lg-${!!data.product.colors.length ? '6' : '12'} ps-0`}>
+                                            <Attributes product={data.product}/>
                                         </div>
-                                        {!!data.product.sizes.length && <div className="col-lg-6 p-0">
+                                        {!!data.product.colors.length && <div className="col-lg-6 p-0">
                                             <div className={style.esohby}>
                                                 <div className={style.cKyf}>
                                                     <div className={style.pxty}>
-                                                        <AiOutlineSafety />
+                                                        <AiOutlineSafety/>
                                                     </div>
                                                     <span>ضمانت اصل بودن و سلامت کالا</span>
                                                 </div>
                                                 <div className={style.cKyf}>
                                                     <div className={style.pxty}>
-                                                        <BsTruck />
+                                                        <BsTruck/>
                                                     </div>
                                                     <span>ارسال فوری و آسان با پست</span>
                                                 </div>
                                                 <div className={style.cKyf}>
                                                     <div className={style.pxty}>
-                                                        <AiOutlineFieldTime />
+                                                        <AiOutlineFieldTime/>
                                                     </div>
                                                     <span>۲۴ ساعته و ۷ روز هفته</span>
                                                 </div>
@@ -78,13 +91,14 @@ const ProductDetaile = () => {
                                             </div>
                                         </div>}
                                     </div>
-                                    <Stock product={data.product} size={size} setSize={setSize} />
+                                    <Stock product={data.product} color={color} setColor={setColor} size={size} setSize={setSize}/>
                                 </div>
                                 <div className="col-lg-5">
-                                    {!!data.product.off_date_to && <OfferTime off_date_to={data.product.off_date_to} />}
-                                    <DetaileSlider Images={data.product.images} isBookmarked={data.product.isBookmarked} id={data.product.id} />
+                                    {!!data.product.off_date_to && <OfferTime off_date_to={data.product.off_date_to}/>}
+                                    <DetaileSlider Images={data.product.images} isBookmarked={data.product.isBookmarked}
+                                                   id={data.product.id}/>
                                 </div>
-                            </div> : <Loading />}
+                            </div> : <Loading/>}
                         </div>
                     </section>
 
@@ -93,7 +107,8 @@ const ProductDetaile = () => {
 
                             <div className={style.c9C4xp}>
                                 <ul className={style.p_Eoxf}>
-                                    <li className={`${style.ycrQl} ${style.obActive}`}><a href="#Specifications">مشخصات</a></li>
+                                    <li className={`${style.ycrQl} ${style.obActive}`}><a
+                                        href="#Specifications">مشخصات</a></li>
                                     <li className={style.ycrQl}><a href="#comments">نظرات</a></li>
                                 </ul>
                             </div>
@@ -101,19 +116,19 @@ const ProductDetaile = () => {
                             <div className="row">
 
                                 <div className="col-lg-9 ps-3">
-                                    <Specifications data={data.product.attributes} />
+                                    <Specifications data={data.product.attributes}/>
 
-                                    <Comments id={id} rate={data.product.rate} />
+                                    <Comments id={id} rate={data.product.rate}/>
                                 </div>
 
                                 <div className="col-lg-3 p-0">
-                                    <Baner product={data.product} size={size} />
+                                    <Baner product={data.product} size={size} color={color}/>
                                 </div>
                             </div>
 
                         </div>
                     </section>
-                </> : <Loading />}
+                </> : <Loading/>}
             </main>
         </>
     );

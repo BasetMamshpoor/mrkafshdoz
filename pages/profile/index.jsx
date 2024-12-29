@@ -7,7 +7,7 @@ import style from './Profile.module.css'
 import UserProf from '/public/Images/Ei-user.svg'
 import withAuth from 'Components/Private/withAuth';
 
-const profile = () => {
+const Profile = () => {
     const router = useRouter();
     const { route } = router.query
     const { tokens, user } = useContext(Authorization)
@@ -40,4 +40,4 @@ const profile = () => {
     );
 };
 
-export default withAuth(profile);
+export default withAuth(Profile);

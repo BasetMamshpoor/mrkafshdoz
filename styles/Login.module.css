@@ -105,12 +105,8 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 .error {
-  position: absolute;
-  top: 4.5rem;
-  right: 5px;
   color: red;
   font-size: 12px;
-  margin: 10px 0;
 }
 .expire {
   display: flex;

@@ -1,5 +1,4 @@
 import Banner from "Components/Main/Banner";
-import Gender from "Components/Main/Gender";
 import MostSell from "Components/Main/MostSell";
 import TwoBanners from "Components/Main/TwoBanners";
 import DailyOffer from "Components/Slider/DailyOffer";
@@ -11,11 +10,9 @@ export default function Home() {
       <main>
         <Slider />
 
-        <DailyOffer />
-
         <Banner />
 
-        <Gender />
+        <DailyOffer />
 
         <MostSell />
 

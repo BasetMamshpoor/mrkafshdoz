@@ -63,7 +63,7 @@ const Product = ({ state, dispatch }) => {
                                         {
                                             p.messages.map(m => {
                                                 return (
-                                                    <p className={style[m.type]}>{m.text}</p>
+                                                    <p key={m.type} className={style[m.type]}>{m.text}</p>
                                                 )
                                             })
                                         }

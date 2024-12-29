@@ -31,7 +31,7 @@ const MiddleNavbar = () => {
                             </form>
                         </div>
                         <div className={style.user}>
-                            <Link href={!tokens ? '/auth/login' : user.is_admin ? '/admin' : '/profile'} className={style.navUser}>
+                            <Link href={!tokens ? '/auth/login' : user.is_admin ? '/admin/orders' : '/profile'} className={style.navUser}>
                                 {!tokens ? <BsPerson /> : user.is_admin ? < RiAdminLine /> : <BsPerson />}
                             </Link>
                             <div className={style.border}></div>

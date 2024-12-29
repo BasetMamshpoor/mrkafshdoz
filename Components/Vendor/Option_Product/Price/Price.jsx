@@ -104,7 +104,7 @@ const Price = ({ setProduct, offPrice, price, touch, errors, discountTime }) => 
                         monthYearSeparator="|"
                         format="HH:mm DD/MMMM/YYYY"
                         plugins={[
-                            <TimePicker hideSeconds position='right' />
+                            <TimePicker key={1} hideSeconds position='right' />
                         ]}
                         minDate={new DateObject({ calendar: persian }).subtract(0, "days")}
                         maxDate={new DateObject({ calendar: persian }).add(getToday(date.off_date_to) - getToday(newDate), "days")}
@@ -125,7 +125,7 @@ const Price = ({ setProduct, offPrice, price, touch, errors, discountTime }) => 
                         monthYearSeparator="|"
                         format="HH:mm DD/MMMM/YYYY"
                         plugins={[
-                            <TimePicker hideSeconds position='right' />
+                            <TimePicker key={1} hideSeconds position='right' />
                         ]}
                         minDate={new DateObject({ calendar: persian }).subtract(getToday(newDate) - getToday(date.off_date_from), "days")}
                         maxDate={new DateObject({ calendar: persian }).add(14, "days")}

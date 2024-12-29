@@ -90,10 +90,11 @@ const Category = () => {
         if (level === 2) {
             if (category.id !== null) createModal(<NewCategory SwalStyled={SwalStyled} reload={reload} categoryLevel={category} />)
             else SwalStyled.fire("دسته والد پیدا نشد", "لطفا اول دسته سطح اول مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید", "error",);
-        } else {
+        } else if (level === 3) {
             if (category.subCategories.id !== null) createModal(<NewCategory SwalStyled={SwalStyled} reload={reload} categoryLevel={category.subCategories} />)
             else SwalStyled.fire("دسته والد پیدا نشد", "لطفا اول دسته سطح دوم مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید", "error",);
         }
+        createModal(<NewCategory SwalStyled={SwalStyled} reload={reload} />)
     }
 
     return (
@@ -101,7 +102,10 @@ const Category = () => {
             {!!categories ? <div className={style.category}>
                 <div className={style.Ec7Hy2}>
                     <div className={style.cat_lvl_}>
-                        <div className={style.Head_t0}><p>سطح ۱</p></div>
+                        <div className={style.Head_t0}>
+                            <p>سطح ۱</p>
+                            <button className={style._add_newOne} onClick={() => handleNew(1)}><FiPlus /></button>
+                        </div>
                         <div className={style.Jxy_2tvi}>
                             {gender().map(i => {
                                 return (

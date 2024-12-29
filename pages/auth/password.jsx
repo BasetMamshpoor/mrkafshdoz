@@ -7,7 +7,7 @@ import axios from 'axios';
 import { Functions } from 'providers/FunctionsProvider';
 import { Authorization } from 'providers/AuthorizationProvider';
 
-const password = () => {
+const Password = () => {
     const Error = useRef()
     const { query, push } = useRouter()
     const { SwalStyled } = useContext(Functions)
@@ -79,4 +79,4 @@ const password = () => {
     );
 };
 
-export default password;
+export default Password;

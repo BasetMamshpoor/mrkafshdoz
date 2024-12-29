@@ -31,17 +31,6 @@ const Information = () => {
                         </div>
                         <div className={style.GvrclT4}>
                             <div className={style.Rcinpte}>
-                                <p>کد ملی</p>
-                            </div>
-                            <p className={style.RcnlEx}>123456789</p>
-                        </div>
-                    </div>
-                    <div className={style.kLRx8Fh}>
-                        <div className={style.nbGr5K}>
-                            <FiEdit />
-                        </div>
-                        <div className={style.GvrclT4}>
-                            <div className={style.Rcinpte}>
                                 <p>شماره موبایل</p>
                             </div>
                             <p className={style.RcnlEx}>۳۰۰۰۱۵۳۸۹۲۳۴۱</p>
@@ -67,17 +56,6 @@ const Information = () => {
                                 <p>رمز عبور</p>
                             </div>
                             <p className={style.RcnlEx}>•••••••</p>
-                        </div>
-                    </div>
-                    <div className={style.kLRx8Fh}>
-                        <div className={style.nbGr5K}>
-                            <FiEdit />
-                        </div>
-                        <div className={style.GvrclT4}>
-                            <div className={style.Rcinpte}>
-                                <p>تاریخ تولد</p>
-                            </div>
-                            <p className={style.RcnlEx}>۱۳۸۱/۱۲/۲۶</p>
                         </div>
                     </div>
                 </div> : <Loading />}

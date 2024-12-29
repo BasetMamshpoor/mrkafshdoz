@@ -12,7 +12,7 @@ const Breadcrumb = ({ breadcrumb = [] }) => {
                             خانه <span>/</span>
                         </Link>
                     </li>
-                    {breadcrumb.map((b, i) => {
+                    {breadcrumb?.map((b, i) => {
                         return (
                             <li key={b.id} className={style.route}>
                                 <Link href={`/category-${b.parent_id === null ? `${b.slug}-apparel` : b.slug}`} className={style.link}>

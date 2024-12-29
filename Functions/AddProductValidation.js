@@ -62,24 +62,24 @@ function validation(product) {
     } else {
         delete errors.discountTime
     }
-    // color
-    if (!product.color) {
-        errors.color = 'نام رنگ را وارد کنید.'
-    } else if (/^[~`!@#$%^&*()_+=[\]\\{}|;':",./<>?a-zA-Z0-9-]+$/.test(product.color)) {
-        errors.color = 'نام رنگ را به فارسی وارد کنید.'
-    } else if (!product.color.trim()) {
-        errors.color = 'نام رنگ را وارد کنید.'
-    } else {
-        delete errors.color
-    }
-    // colorCode
-    if (!product.colorCode) {
-        errors.colorCode = 'پالت رنگ را انتخاب کنید.'
-    } else {
-        delete errors.colorCode
-    }
+    // // color
+    // if (!product.color) {
+    //     errors.color = 'نام رنگ را وارد کنید.'
+    // } else if (/^[~`!@#$%^&*()_+=[\]\\{}|;':",./<>?a-zA-Z0-9-]+$/.test(product.color)) {
+    //     errors.color = 'نام رنگ را به فارسی وارد کنید.'
+    // } else if (!product.color.trim()) {
+    //     errors.color = 'نام رنگ را وارد کنید.'
+    // } else {
+    //     delete errors.color
+    // }
+    // // colorCode
+    // if (!product.colorCode) {
+    //     errors.colorCode = 'پالت رنگ را انتخاب کنید.'
+    // } else {
+    //     delete errors.colorCode
+    // }
     // sizes
-    if (!product._method && !product.sizes.length) {
+    if (!product._method && !product.colors.length) {
         errors.sizes = 'سایز و تعداد موجود رو وارد کنید.'
     } else {
         delete errors.sizes
