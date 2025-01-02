@@ -46,7 +46,6 @@ const DetaileSlider = ({ Images, isBookmarked, id }) => {
             confirmButtonText: 'ورود',
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            willClose: () => setIsOpen(false)
         }).then((result) => {
             if (result.isConfirmed) push('/auth/login')
         })

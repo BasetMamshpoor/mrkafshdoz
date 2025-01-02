@@ -87,14 +87,15 @@ const Category = () => {
     }
 
     const handleNew = (level) => {
-        if (level === 2) {
+        if (level === 1) {
+            createModal(<NewCategory SwalStyled={SwalStyled} reload={reload} />)
+        } else if (level === 2) {
             if (category.id !== null) createModal(<NewCategory SwalStyled={SwalStyled} reload={reload} categoryLevel={category} />)
             else SwalStyled.fire("دسته والد پیدا نشد", "لطفا اول دسته سطح اول مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید", "error",);
         } else if (level === 3) {
             if (category.subCategories.id !== null) createModal(<NewCategory SwalStyled={SwalStyled} reload={reload} categoryLevel={category.subCategories} />)
             else SwalStyled.fire("دسته والد پیدا نشد", "لطفا اول دسته سطح دوم مورد نظر را وارد کنید سپس اقدام به افزودن دسته به زیر مجموعه آن نمایید", "error",);
         }
-        createModal(<NewCategory SwalStyled={SwalStyled} reload={reload} />)
     }
 
     return (

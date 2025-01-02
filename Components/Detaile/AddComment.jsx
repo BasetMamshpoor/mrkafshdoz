@@ -1,30 +1,14 @@
 import axios from 'axios';
-import { e2p } from 'Functions/ConvertNumbers';
-import { useEffect, useRef, useState } from 'react';
+import {  useRef, useState } from 'react';
 import style from './AddComment.module.css'
-import { BsDot } from 'react-icons/bs'
 import Cookies from 'js-cookie';
+import { Slider } from '@nextui-org/react';
 
 const AddComment = ({ state, id, SwalStyled, push, setIsOpen }) => {
-    const input = useRef();
     const parent = useRef()
-    const [data, setData] = useState(!!state ? state : { product_id: id, text: '', rate: 1, user_id: null, is_anonymous: 0 })
+    const [data, setData] = useState(!!state ? state : { product_id: id, text: '', rate: 3,  is_anonymous: 0 })
     const token = Cookies.get('token') ? JSON.parse(Cookies.get('token')) : null
     const headers = { Authorization: `${token?.token_type} ${token?.access_token}` }
-
-    useEffect(() => {
-        const e = input.current
-        e.style.setProperty('--value', e.value);
-        e.style.setProperty('--bg', e.value > 3 ? '#00a049' : '#f9bc00');
-        const style = () => {
-            e.style.setProperty('--value', e.value)
-            e.style.setProperty('--bg', e.value > 3 ? '#00a049' : '#f9bc00')
-        }
-
-        e.addEventListener('input', style);
-
-        return () => e.removeEventListener('input', style)
-    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -69,45 +53,34 @@ const AddComment = ({ state, id, SwalStyled, push, setIsOpen }) => {
                 </header>
                 <form onSubmit={handleSubmit}>
                     <content className={style.gtDComm}>
-                        <div className={style.ocRxiu}>
-                            <label htmlFor='rate' className={style.ibtc}>امتیاز دهید.<span className={style.point}>{e2p(data.rate)}</span></label>
-                            <input id='rate' ref={input} className={style.PybIec} type="range" min="1" max="5" defaultValue={state ? state.rate : '1'} onInput={(e) => setData(prev => { return { ...prev, rate: e.target.value } })} />
-                            <ul className={style.Rcoply}>
-                                <li>
-                                    <span>
-                                        <BsDot />
-                                    </span>
-                                    <span>خیلی بد</span>
-                                </li>
-                                <li>
-                                    <span>
-                                        <BsDot />
-                                    </span>
-                                    <span>بد</span>
-                                </li>
-                                <li>
-                                    <span>
-                                        <BsDot />
-                                    </span>
-                                    <span>معمولی</span>
-                                </li>
-                                <li>
-                                    <span>
-                                        <BsDot />
-                                    </span>
-                                    <span>خوب</span>
-                                </li>
-                                <li>
-                                    <span>
-                                        <BsDot />
-                                    </span>
-                                    <span>عالی</span>
-                                </li>
-                            </ul>
-                        </div>
+                        <Slider
+                            classNames={{ mark: 'text-xs', track: 'border-x-0',base:'px-4' }}
+                            color={data.rate == 4 ? 'primary' : data.rate == 3 ? 'warning' : 'success'}
+                            maxValue={5}
+                            minValue={3}
+                            value={data.rate}
+                            onChange={(e) => setData(prev => { return { ...prev, rate: e } })}
+                            showSteps={true}
+                            size="sm"
+                            step={1}
+                            marks={[
+                                {
+                                    value: 3,
+                                    label: "معمولی",
+                                },
+                                {
+                                    value: 4,
+                                    label: "خوب",
+                                },
+                                {
+                                    value: 5,
+                                    label: "عالی",
+                                },
+                            ]}
+                        />
                         <div className={style.VqoJu}>
                             <label className={style.e3Xipy}>متن نظر!<span className={style.requierd}>*</span></label>
-                            <textarea defaultValue={state?.text} minLength={5} maxLength={300} required className={style.TciBol} onChange={({ target }) => setData(prev => { return { ...prev, text: target.value } })} placeholder="این محصول ..."></textarea>
+                            <textarea defaultValue={state?.text} minLength={5} required className={style.TciBol} onChange={({ target }) => setData(prev => { return { ...prev, text: target.value } })} placeholder="این محصول ..."></textarea>
                         </div>
                         <div className={style.Oibt0s}>
                             <input className={style.form_check_input} type="checkbox" onChange={() => setData(prev => { return { ...prev, is_anonymous: prev.is_anonymous ? 0 : 1 } })}

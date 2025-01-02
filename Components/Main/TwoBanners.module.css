@@ -2,7 +2,6 @@
   margin: 3rem 0;
 }
 .wrapper {
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-evenly;

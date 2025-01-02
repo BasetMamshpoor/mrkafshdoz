@@ -1,17 +1,98 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@font-face {
-  font-family: "IRANYekan";
+/* @font-face {
+  
   src: url("../public/Fonts/ttf/IRANYekanWebRegular.ttf") format("ttf"),
     url("../public/Fonts/woff/IRANYekanWebRegular.woff") format("woff"),
     url("../public/Fonts/woff2/IRANYekanWebRegular.woff2") format("woff"),
     url("../public/Fonts/eot/IRANYekanWebRegular.eot") format("eot");
-}
+} */
 
-@font-face {
-  font-family: Icon;
-  src: url("../public/Fonts/toman.woff2") format("woff2");
+@layer base {
+  html {
+    @apply font-iransansNum;
+  }
+  .bg-main {
+    @apply bg-gradient-to-r from-[#4d96ea] to-[#0040a6];
+  }
+  @font-face {
+    font-family: "IRANSansXFaNum";
+    src: url("/fonts/iransans-funum-woff2/IRANSansXFaNum-Regular.woff2")
+        format("woff2"),
+      url("/fonts/iransans-funum-woff/IRANSansXFaNum-Regular.woff")
+        format("woff");
+    font-style: normal;
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "IRANSansFaNum";
+    src: url("/fonts/iransans-funum-woff2/IRANSansXFaNum-Medium.woff2")
+        format("woff2"),
+      url("/fonts/iransans-funum-woff/IRANSansXFaNum-Medium.woff")
+        format("woff");
+    font-style: normal;
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: "IRANSansXFaNum";
+    src: url("/fonts/iransans-funum-woff2/IRANSansXFaNum-DemiBold.woff2")
+        format("woff2"),
+      url("/fonts/iransans-funum-woff/IRANSansXFaNum-DemiBold.woff")
+        format("woff");
+    font-style: normal;
+    font-weight: 600;
+  }
+  @font-face {
+    font-family: "IRANSansXFaNum";
+    src: url("/fonts/iransans-funum-woff/IRANSansXFaNum-Bold.woff")
+        format("woff"),
+      url("/fonts/iransans-funum-woff2/IRANSansXFaNum-Bold.woff2")
+        format("woff2");
+    font-style: normal;
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: "IRANSansXFaNum";
+    src: url("/fonts/iransans-funum-woff/IRANSansXFaNum-ExtraBlack.woff")
+        format("woff"),
+      url("/fonts/iransans-funum-woff2/IRANSansXFaNum-ExtraBlack.woff2")
+        format("woff2");
+    font-style: normal;
+    font-weight: 800;
+  }
+  @font-face {
+    font-family: "IRANSansXFaNum";
+    src: url("/fonts/iransans-funum-woff/IRANSansXFaNum-Black.woff")
+        format("woff"),
+      url("/fonts/iransans-funum-woff2/IRANSansXFaNum-Black.woff2")
+        format("woff2");
+    font-style: normal;
+    font-weight: 900;
+  }
+  @font-face {
+    font-family: "IRANSansXFaNum";
+    src: url("/fonts/iransans-funum-woff/IRANSansXFaNum-ExtraBlack.woff")
+        format("woff"),
+      url("/fonts/iransans-funum-woff2/IRANSansXFaNum-ExtraBlack.woff2")
+        format("woff2");
+    font-style: normal;
+    font-weight: 950;
+  }
+  @font-face {
+    font-family: "IRANSansXFaNum";
+    src: url("/fonts/iransans-funum-woff/IRANSansXFaNum-Heavy.woff")
+        format("woff"),
+      url("/fonts/iransans-funum-woff2/IRANSansXFaNum-Heavy.woff2")
+        format("woff2");
+    font-style: normal;
+    font-weight: 1000;
+  }
+
+  @font-face {
+    font-family: Icon;
+    src: url("../public/Fonts/toman.woff2") format("woff2");
+  }
 }
 
 ::-webkit-scrollbar {
@@ -30,14 +111,12 @@
 }
 body {
   font-size: 14px;
-  font-weight: 400;
   padding: 0px;
   margin: 0px;
   color: rgb(43, 52, 69);
-  font-family: IRANYekan, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont,
+  /* font-family: IRANYekan, "Open Sans", Roboto, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
-  line-height: 1.5;
+    "Helvetica Neue", sans-serif; */
   overflow-x: hidden !important;
 }
 main {
@@ -72,7 +151,6 @@ svg {
 }
 
 input {
-  font-family: "IRANYekan";
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -96,7 +174,11 @@ textarea {
   font-size: inherit;
   line-height: inherit;
 }
-
+.centerOfParent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .d-flex {
   display: flex !important;
 }
@@ -393,7 +475,37 @@ textarea {
 .dealyOff .swiper-button-prev:after {
   font-size: 15px;
 }
-
+.slider .swiper-button-next.swiper-button-disabled,
+.slider .swiper-button-prev.swiper-button-disabled {
+  display: none;
+}
+.slider .swiper-button-next,
+.slider .swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  z-index: 20;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #deebfb;
+  border: 1px solid #6da9ed;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.slider .swiper-button-next:after,
+.slider .swiper-button-prev:after {
+  font-size: 15px;
+  color: #6da9ed;
+}
+@media (max-width: 1023.98px) {
+  .slider .swiper .swiper-button-next,
+  .slider .swiper .swiper-button-prev {
+    display: none;
+  }
+}
 .sdlks {
   display: flex;
   align-items: center;

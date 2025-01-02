@@ -115,20 +115,20 @@ const Form = () => {
                             </div>
                             <SelectCategories touch={touch} errors={errors} setProduct={setProduct} />
                         </div>
-                        <div className={style.Fv_tFExqlo}>
-                            <UploadImage setProduct={setProduct} />
-                            <div className={style.errors_div_input}>
-                                {touch.image && errors.image && <span>{errors.image}</span>}
-                                {touch.images && errors.images && <span>{errors.images}</span>}
+                        <div className={style.ICex11A_4}>
+                            <div className={style.kctE_1Zq}>
+                                <Size setProduct={setProduct} errors={errors} touch={touch} />
+                                <SizesList setProduct={setProduct} colors={product.colors} />
                             </div>
                         </div>
                         <div className={style.DxwzE_Os_T3}>
                             <Price setProduct={setProduct} offPrice={product.offPrice} price={product.price} touch={touch} errors={errors} discountTime={{ off_date_from: new Date(product.off_date_from), off_date_to: new Date(product.off_date_to) }} />
                         </div>
-                        <div className={style.ICex11A_4}>
-                            <div className={style.kctE_1Zq}>
-                                <Size setProduct={setProduct} errors={errors} touch={touch} />
-                                <SizesList setProduct={setProduct} colors={product.colors} />
+                        <div className={style.Fv_tFExqlo}>
+                            <UploadImage product={product} setProduct={setProduct} />
+                            <div className={style.errors_div_input}>
+                                {touch.image && errors.image && <span>{errors.image}</span>}
+                                {touch.images && errors.images && <span>{errors.images}</span>}
                             </div>
                         </div>
                         <div className={style.bGCzu_wq}>

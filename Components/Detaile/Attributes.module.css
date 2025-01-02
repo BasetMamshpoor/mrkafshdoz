@@ -10,13 +10,12 @@
 }
 .Kxope p {
   font-weight: 600;
-  font-family: IRANYekan, sans-serif;
+
   margin-bottom: 0.5rem;
   color: rgb(80, 80, 80);
   font-size: 16px;
 }
 .Kxope li {
-  font-family: IRANYekan, sans-serif;
   line-height: 2;
   font-size: 16px;
   color: #000;
@@ -32,7 +31,7 @@
 .desc {
   font-size: 13px;
 }
-@media (max-width:1023.98px) {
+@media (max-width: 1023.98px) {
   .Cezp {
     padding-left: 1rem;
   }

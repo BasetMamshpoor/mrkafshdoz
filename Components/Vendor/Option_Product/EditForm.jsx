@@ -12,7 +12,6 @@ import UploadImage from './UploadImage';
 import { ImBoxAdd, ImCheckmark, ImSearch } from 'react-icons/im'
 import SelectCategories from './SelectCategories';
 import Brands from './Brands';
-import PrevSizes from './Sizes/PervSizes'
 import Cookies from 'js-cookie';
 
 const EditForm = ({ id, SwalStyled, setIsOpen, reload }) => {
@@ -39,11 +38,12 @@ const EditForm = ({ id, SwalStyled, setIsOpen, reload }) => {
                 setState(res.data.data)
                 const { product } = res.data.data
                 const cleanState = (product.price === product.offPrice) ? filterState(product) : product;
-                const { brand, category, image, images, created_at, id, offPercent, rate, slug, sizes, ...prev } = cleanState
-                let newProductSatet = { ...prev, brand_id: brand.id, category_id: category.id, images: [], deletingImages: [], deletingSizes: [], sizes: [], _method: "PUT" };
+                const { brand, category, image, images, created_at, id, offPercent, rate, slug, ...prev } = cleanState
+                let newProductSatet = { ...prev, brand_id: brand.id, category_id: category?.id, images: [], deletingImages: [], deletingColors: [],  _method: "PUT" };
                 setProduct(newProductSatet)
 
-            }).catch(err => {
+            })
+            .catch(err => {
                 SwalStyled.fire('پیدا نشد', `محصول با آیدی${value}پیدا نشد`, 'error')
             })
     }
@@ -132,7 +132,7 @@ const EditForm = ({ id, SwalStyled, setIsOpen, reload }) => {
                     </div>}
                 </div>
                 {!!state ? <div className={style.uTyc_3Waxd1}>
-                    <form className={style.WzlProductAdd_tce} method="post" onSubmit={handleSubmit}>
+                    <form className={style.WzlProductAdd_tce} onSubmit={handleSubmit}>
                         <div className={style.DxwzE_Os_T3}>
                             <div className={style.nJe_3zq_plf}>
                                 <Input type='text' placeholder="نام محصول" name='name' value={product.name} result={handleResult} className={style.input} />
@@ -144,25 +144,20 @@ const EditForm = ({ id, SwalStyled, setIsOpen, reload }) => {
                             </div>
                             <SelectCategories touch={touch} errors={errors} setProduct={setProduct} data={state.breadcrumb} />
                         </div>
-                        <div className={style.Fv_tFExqlo}>
-                            <UploadImage setProduct={setProduct} images={state?.product.images} image={state?.product.image} />
-                            <div className={style.errors_div_input}>
-                                {touch.image && errors.image && <span>{errors.image}</span>}
-                                {touch.images && errors.images && <span>{errors.images}</span>}
+                        <div className={style.ICex11A_4}>
+                            <div className={style.kctE_1Zq}>
+                                <Size setProduct={setProduct} errors={errors} touch={touch} />
+                                <SizesList setProduct={setProduct} colors={product.colors} />
                             </div>
                         </div>
                         <div className={style.DxwzE_Os_T3}>
                             <Price setProduct={setProduct} offPrice={product.offPrice} price={product.price} touch={touch} errors={errors} discountTime={{ off_date_from: new Date(product.off_date_from), off_date_to: new Date(product.off_date_to) }} />
                         </div>
-                        <div className={style.ICex11A_4}>
-                            <div className={style.kctE_1Zq}>
-                                <Size setProduct={setProduct} errors={errors} touch={touch} />
-                            </div>
-                            <div className={style.vExpkqZu}>
-                                <SizesList setProduct={setProduct} sizes={product.sizes} />
-                            </div>
-                            <div className={style.sizes}>
-                                <PrevSizes setProduct={setProduct} sizes={state?.product.sizes} />
+                        <div className={style.Fv_tFExqlo}>
+                            <UploadImage product={product} setProduct={setProduct} images={state?.product.images} image={state?.product.image}/>
+                            <div className={style.errors_div_input}>
+                                {touch.image && errors.image && <span>{errors.image}</span>}
+                                {touch.images && errors.images && <span>{errors.images}</span>}
                             </div>
                         </div>
                         <div className={style.bGCzu_wq}>

@@ -30,14 +30,14 @@ const Product = ({ state, dispatch }) => {
                                         <p>{p.brand.name}</p>
                                     </div>
                                     <div className={style.box}>
-                                        <div className={style.Detail_Pnmvg}><span style={{ background: p.colorCode }}></span></div>
-                                        <p>{p.color}</p>
+                                        <div className={style.Detail_Pnmvg}><span style={{ background: p.color.colorCode }}></span></div>
+                                        <p>{p.color.color}</p>
                                     </div>
-                                    {!!p.sizes && <div className={style.box}>
+                                    {!!p.color.size && <div className={style.box}>
                                         <div className={style.Detail_Pnmvg}>
                                             <TfiRuler />
                                         </div>
-                                        <p>{p.sizes.size}</p>
+                                        <p>{p.color.size.size}</p>
                                     </div>}
                                 </div>
                                 {!isDeleted && <div className={`${style.vVBE__0Oiju} ${style.lg_screen}`}>
@@ -46,7 +46,7 @@ const Product = ({ state, dispatch }) => {
                                         {p.offPrice !== p.price && <div className={style.UcUrzyq}>{addComma(p.price.toString())}<span>تخفیف</span></div>}
                                     </div>
                                     <div className={style.Dc_Oi88Ted}>
-                                        <button className={`${style.bTxn} ${p.quantity >= p.sizes?.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
+                                        <button className={`${style.bTxn} ${p.quantity >= p.color?.size?.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
                                             <FiPlus />
                                         </button>
                                         <span className={style.num_2Cproduct}>{e2p(p.quantity)}</span>
@@ -77,7 +77,7 @@ const Product = ({ state, dispatch }) => {
                                 {p.offPrice !== p.price && <div className={style.UcUrzyq}>{addComma(p.price.toString())}<span>تخفیف</span></div>}
                             </div>
                             <div className={style.Dc_Oi88Ted_sm}>
-                                <button className={`${style.bTxn} ${p.quantity >= p.sizes?.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
+                                <button className={`${style.bTxn} ${p.quantity >= p.color?.size?.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: "INCREASE", payload: p })}>
                                     <FiPlus />
                                 </button>
                                 <span className={style.num_2Cproduct}>{e2p(p.quantity)}</span>

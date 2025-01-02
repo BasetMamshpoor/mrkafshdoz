@@ -1,4 +1,5 @@
 import Banner from "Components/Main/Banner";
+import FaqSection from "Components/Main/FaqQuestions";
 import MostSell from "Components/Main/MostSell";
 import TwoBanners from "Components/Main/TwoBanners";
 import DailyOffer from "Components/Slider/DailyOffer";
@@ -17,6 +18,8 @@ export default function Home() {
         <MostSell />
 
         <TwoBanners />
+        
+        <FaqSection />
       </main>
     </>
   )

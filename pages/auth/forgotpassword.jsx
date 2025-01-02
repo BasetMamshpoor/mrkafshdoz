@@ -13,7 +13,7 @@ import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 const ForgotPassword = () => {
     const router = useRouter()
     const [state, setState] = useState({ code: router.query.code, password: '', password_confirmation: '' })
-    const { tokens } = useContext(Authorization)
+    const { tokens, user } = useContext(Authorization)
     const { SwalStyled } = useContext(Functions)
     const input1 = useRef({})
     const { length, letter, number, symbol, progress, isMatch } = PasswordValidation(state.password, state.password_confirmation)
@@ -31,7 +31,7 @@ const ForgotPassword = () => {
         })
             .then(res => {
                 SwalStyled.fire('انجام شد', res.data.message, 'success')
-                router.push('/profile/information')
+                router.push(`/${user.role}/information`)
             })
             .catch(err => {
                 SwalStyled.fire('انجام نشد', err.response.data.message, 'error')
@@ -39,8 +39,7 @@ const ForgotPassword = () => {
     }
 
     const handleChange = e => {
-        const { value } = e.target
-        const { name } = e.target
+        const { value, name } = e.target
         setState(prev => {
             return {
                 ...prev,

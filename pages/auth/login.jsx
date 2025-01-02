@@ -11,23 +11,23 @@ const Login = () => {
     const handleSubmit = async event => {
         event.preventDefault()
         const value = event.target[0].value
-        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        const regex = /^09\d{9}$/;
         const isValid = regex.test(value);
         if (!isValid) {
-            Error.current.innerText = 'آدرس ایمیل معتبر نیست.'
+            Error.current.innerText = 'شماره موبایل معتبر نیست.'
         } else {
             Error.current.innerText = ''
-            await axios.post(`/auth/check-email`, { email: value })
+            await axios.post(`/auth/check-email`, { mobile: value })
                 .then(({ data }) => {
                     if (data.registered)
                         push({
                             pathname: '/auth/password',
-                            query: { email: value }
+                            query: { mobile: value }
                         })
                     else
                         push({
                             pathname: '/auth/verify',
-                            query: { email: value }
+                            query: { mobile: value }
                         })
                 })
                 .catch(err => Error.current.innerText = 'با عرض پوزش مشکلی به وجود آمده')
@@ -45,11 +45,11 @@ const Login = () => {
                         </div>
                         <h1 className={style.title}>ورود | ثبت‌نام</h1>
                         <div className={style.info}>
-                            لطفا آدرس ایمیل خود را وارد کنید
+                            لطفا شماره موبایل خود را وارد کنید
                         </div>
                         <form className={style.form} onSubmit={handleSubmit}>
                             <div className={style.input_sec}>
-                                <input type="email" name='contact' required />
+                                <input type="tel"  required />
                             </div>
                             <span className={style.error} ref={Error}></span>
                             <button className={style.btn}>بررسی</button>

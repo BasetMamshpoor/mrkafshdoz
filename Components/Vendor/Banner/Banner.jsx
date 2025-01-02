@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import style from './Banner.module.css'
 import createModal from 'Components/Modal';
 import { FiEdit3 } from "react-icons/fi";
-import Link from 'next/link';
 import Image from 'next/image';
 import NewBanner from './NewBanner';
 import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
@@ -28,11 +27,11 @@ const Banner = () => {
                     <div className={style.banners}>
                         {!!firstLine ? firstLine.map(b => {
                             return (
-                                <div key={b.id} className={style.banner}>
-                                    <Link href={b.link} className={style.link}>
+                                <div key={b.id} className={style.banner} onClick={() => createModal(<NewBanner data={b} reload={reload} SwalStyled={SwalStyled} />)}>
+                                    <div className='flex items-center justify-center w-full h-full cursor-pointer'>
                                         <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={b.src} alt="" />
-                                    </Link>
-                                    <span className={style.option} onClick={() => createModal(<NewBanner data={b} reload={reload} SwalStyled={SwalStyled} />)}><FiEdit3 /></span>
+                                    </div>
+                                    <span className={style.option}><FiEdit3 /></span>
                                 </div>)
                         }) : <Loading />}
                     </div>
@@ -42,11 +41,11 @@ const Banner = () => {
                     <div className={style.banners}>
                         {!!secondLine ? secondLine.map(b => {
                             return (
-                                <div  key={b.id} className={style.lgBanner}>
-                                    <Link href={b.link} className={style.link}>
+                                <div  key={b.id} className={style.lgBanner}  onClick={() => createModal(<NewBanner data={b} reload={reload} SwalStyled={SwalStyled} />)}>
+                                    <div className='flex items-center justify-center w-full h-full cursor-pointer'>
                                         <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={b.src} alt="" />
-                                    </Link>
-                                    <span className={style.option} onClick={() => createModal(<NewBanner data={b} reload={reload} SwalStyled={SwalStyled} />)}><FiEdit3 /></span>
+                                    </div>
+                                    <span className={style.option}><FiEdit3 /></span>
                                 </div>)
                         }) : <Loading />}
                     </div>

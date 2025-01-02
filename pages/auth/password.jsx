@@ -13,7 +13,7 @@ const Password = () => {
     const { SwalStyled } = useContext(Functions)
     const { getTokens, getUserInformation } = useContext(Authorization)
     useEffect(() => {
-        if (!query.email)
+        if (!query.mobile)
             push('/auth/login')
     }, [])
 
@@ -29,7 +29,7 @@ const Password = () => {
                 grant_type: 'password',
                 client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
                 client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-                username: query.email,
+                username: query.mobile,
                 password: value
             }
             await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/oauth/token`, data)
@@ -69,7 +69,7 @@ const Password = () => {
                             <button className={style.btn}>ورود</button>
                             <Link href={{
                                 pathname: '/auth/verify',
-                                query: { email: query.email }
+                                query: { mobile: query.mobile }
                             }}>ورود با رمز یکبار مصرف</Link>
                         </form>
                     </div>

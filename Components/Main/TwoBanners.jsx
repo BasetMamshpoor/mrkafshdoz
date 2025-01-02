@@ -12,7 +12,7 @@ const TwoBanners = () => {
     return (
         <>
             <div className={style.Banner}>
-                <div className="container">
+                <div className="container !px-4">
                     <div className={style.wrapper}>
                         {banners && banners.map((b, i) => {
                             if (i < 2)

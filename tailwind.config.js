@@ -17,6 +17,15 @@ module.exports = {
         'xs': '475px',
         ...defaultTheme.screens,
       },
+      fontFamily: {
+        'iransansNum': ['IRANSansXFaNum', 'sans-serif'],
+        sans: [
+          {
+            fontFeatureSettings: '"cv11", "ss01"',
+            fontVariationSettings: '"opsz" 32'
+          },
+        ],
+      },
     },
   },
   plugins: [nextui()],

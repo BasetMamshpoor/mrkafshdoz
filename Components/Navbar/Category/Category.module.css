@@ -8,7 +8,7 @@
   position: fixed;
   left: 0;
   right: 0;
-  top: 11.05rem;
+  top: 12.1rem;
   bottom: 0;
   background: rgba(0, 0, 0, 0.7);
   user-select: none;
@@ -23,8 +23,6 @@
   min-height: 390px;
   max-height: 450px;
   height: 100%;
-  display: flex;
-  flex-direction: column;
   border-radius: 0 0 10px 10px;
   box-shadow: 0 1px 1px rgb(0 0 0 / 14%), 0 4px 8px rgb(0 0 0 / 30%);
   overflow: hidden;

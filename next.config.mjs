@@ -13,6 +13,11 @@ const nextConfig = {
         source: '/admin',
         destination: '/admin/setting',
         permanent: true,
+      },
+      {
+        source: '/profile',
+        destination: '/profile/information',
+        permanent: true,
       }
     ]
   },

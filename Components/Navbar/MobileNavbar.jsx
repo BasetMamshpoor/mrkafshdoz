@@ -19,19 +19,19 @@ const MobileNavbar = () => {
     const { state } = useContext(CartContext)
     const { categories } = useContext(Categories)
     const { user, tokens } = useContext(Authorization)
+    let arr = [
+        { route: '', iconOutline: <BsHouse />, iconeFill: <BsHouseFill />, value: 'خانه' },
+        { route: `category-${categories[0].slug}-apparel`, iconOutline: <MdOutlineCategory />, iconeFill: <MdCategory />, value: 'دسته بندی' },
+        { route: 'checkout/cart', iconOutline: <BsCart />, iconeFill: <BsCartFill />, value: 'سبد خرید' },
+        {
+            route: !tokens ? 'auth/login' : user?.is_admin ? 'admin' : 'profile',
+            iconOutline: !tokens ? <BsPerson /> : user?.is_admin ? <RiAdminLine /> : <BsPerson />,
+            iconeFill: !tokens ? <BsPersonFill /> : user?.is_admin ? <RiAdminFill /> : <BsPersonFill />,
+            value: !!tokens ? 'صفحه من' : 'ورود'
+        },
+    ]
 
     const Menu = useMemo(() => {
-        let arr = [
-            { route: '', iconOutline: <BsHouse />, iconeFill: <BsHouseFill />, value: 'خانه' },
-            { route: `category-${categories[0].slug}-apparel`, iconOutline: <MdOutlineCategory />, iconeFill: <MdCategory />, value: 'دسته بندی' },
-            { route: 'checkout/cart', iconOutline: <BsCart />, iconeFill: <BsCartFill />, value: 'سبد خرید' },
-            {
-                route: !tokens ? 'auth/login' : user?.is_admin ? 'admin' : 'profile',
-                iconOutline: !tokens ? <BsPerson /> : user?.is_admin ? <RiAdminLine /> : <BsPerson />,
-                iconeFill: !tokens ? <BsPersonFill /> : user?.is_admin ? <RiAdminFill /> : <BsPersonFill />,
-                value: !!tokens ? 'صفحه من' : 'ورود'
-            },
-        ]
         const startWith = path.split('/')[1]
         return arr.map((obj, i) => {
             let isActive = obj.route === startWith
@@ -41,7 +41,7 @@ const MobileNavbar = () => {
                 <li className={style.item} key={i}>
                     <Link className={`${style.link} ${(isActive || isActive2) ? style.active : ''}`} href={`/${obj.route}`}>
                         <div className={style.menuIcone}>
-                            {/* {(isActive || isActive2) ? obj.iconeFill : obj.iconOutline} */}
+                           {obj.iconOutline}
                             {obj.route === '/cart' && state.itemsCounter > 0 &&
                                 <div className={style.itemsCounter}><span>{e2p(state.itemsCounter)}</span></div>}
                         </div>

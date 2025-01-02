@@ -18,23 +18,15 @@ const Category = ({ flow, setFlow }) => {
 
     const categoryLevel2 = categories.find(c => c.slug === gender).subCategories
 
-    const genderElement = categories.map((item, index) => {
+    const apparelElement = categories.map((item, index) => {
         return <li key={item.id}
-            className={`${style.gender} ${gender === item.slug ? style.gender_active : ''}`}
-            onMouseEnter={() => { setGender(item.slug); setCategory(categories[index].subCategories[0].slug) }}>
+            className={`${style.gender_apparel} ${gender === item.slug ? style.apparel_active : ''}`}
+            onMouseEnter={() => { setGender(item.slug); setCategory(categories[index].subCategories[0]?.slug) }}>
             <Link href={`/category-${item.slug}-apparel`}>{item.name}</Link></li>
     })
 
 
-    const apparelElement = categoryLevel2.map(item => {
-        return <li key={item.id}
-            className={`${style.gender_apparel} ${category === item.slug ? style.apparel_active : ''}`}
-            onMouseEnter={() => setCategory(item.slug)}
-        ><Link href={`/category-${item.slug}`}>{item.name}</Link></li>
-    })
-
-
-    const apparelTypeElement = categoryLevel2.find(c => c.slug === category).subCategories.map(i => {
+    const apparelTypeElement = categoryLevel2.map(i => {
         return (
             <article className={style.article} key={i.id}>
                 <Link href={`/category-${i.slug}`}>
@@ -50,12 +42,9 @@ const Category = ({ flow, setFlow }) => {
     return (
         <>
             <div className={`${style.categorybg} ${flow ? style.show : style.hidden}`} >
-                <div className={style.cat_menu} onMouseEnter={() => setFlow(true)} onMouseLeave={() => setFlow(false)}>
-                    <div className={style.cat_gender}>
-                        <ul>
-                            {genderElement}
-                        </ul>
-                    </div>
+                <div className={style.cat_menu}
+                onMouseEnter={() => setFlow(true)} onMouseLeave={() => setFlow(false)}
+                >
                     <div className={style.cat_gender_menu}>
                         <div className={style.cat_gender_apparel}>
                             <ul>

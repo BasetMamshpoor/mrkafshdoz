@@ -4,21 +4,10 @@ import NavbarLinks from './NavbarLinks';
 import TopBar from './Topbar';
 
 const Navbar = () => {
-    let styles = {
-        position: "fixed",
-        width: "100vw",
-        top: "0",
-        left: "0",
-        right: "0",
-        zIndex: "999",
-        paddingRight:"10px"
-    }
-
     return (
         <>
-            <header style={{ overflow: 'hidden', padding: '5.5rem 0' }}>
-                <div style={styles}>
-                    <TopBar />
+            <header className='overflow-hidden py-24'>
+                <div className='fixed w-screen top-0 left-0 right-0 z-[999]'>
                     <MiddleNavbar />
                     <NavbarLinks />
                 </div>

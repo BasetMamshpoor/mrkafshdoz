@@ -6,6 +6,9 @@ import createModal from 'Components/Modal';
 import ChangePassword from './ChangePassword';
 import { Functions } from 'providers/FunctionsProvider';
 import Loading from 'Components/Loading';
+import EditModal from './EditModal';
+import { IoMdCloseCircle } from 'react-icons/io';
+import { FaCheckCircle } from 'react-icons/fa';
 
 const Information = () => {
     const { tokens, user } = useContext(Authorization)
@@ -15,9 +18,7 @@ const Information = () => {
             <div className={style.UBtgvIR4}>
                 {Object.keys(user).length > 0 ? <div className={style.lOmph0}>
                     <div className={style.kLRx8Fh}>
-                        <div className={style.nbGr5K}>
-                            <FiEdit />
-                        </div>
+                        <EditModal value={user.first_name} titleFa='نام' titleEn='name' type='text' />
                         <div className={style.GvrclT4}>
                             <div className={style.Rcinpte}>
                                 <p>نام و نام خانوادگی</p>
@@ -26,29 +27,17 @@ const Information = () => {
                         </div>
                     </div>
                     <div className={style.kLRx8Fh}>
-                        <div className={style.nbGr5K}>
-                            <FiEdit />
-                        </div>
+                        <EditModal value={user.mobile} titleFa='شماره موبایل' titleEn='mobile' type='tel' verify />
                         <div className={style.GvrclT4}>
                             <div className={style.Rcinpte}>
-                                <p>شماره موبایل</p>
+                                <p className='flex items-center gap-2'>شماره موبایل<span>
+                                    {user?.mobile_verified_at ? <FaCheckCircle className={`w-[20px] h-[20px] fill-green-500`} /> : <IoMdCloseCircle className={`w-[20px] h-[20px] fill-red-500`} />}</span></p>
                             </div>
-                            <p className={style.RcnlEx}>۳۰۰۰۱۵۳۸۹۲۳۴۱</p>
+                            <p className={style.RcnlEx}>{user?.mobile}</p>
                         </div>
                     </div>
                     <div className={style.kLRx8Fh}>
-                        <div className={style.nbGr5K}>
-                            <FiEdit />
-                        </div>
-                        <div className={style.GvrclT4}>
-                            <div className={style.Rcinpte}>
-                                <p>ایمیل</p>
-                            </div>
-                            <p className={style.RcnlEx}>{user?.email}</p>
-                        </div>
-                    </div>
-                    <div className={style.kLRx8Fh}>
-                        <div className={style.nbGr5K} onClick={() => createModal(<ChangePassword Swal={SwalStyled} token={tokens} email={user.email} />)}>
+                        <div className={style.nbGr5K} onClick={() => createModal(<ChangePassword Swal={SwalStyled} token={tokens} mobile={user.mobile} />)}>
                             <FiEdit />
                         </div>
                         <div className={style.GvrclT4}>

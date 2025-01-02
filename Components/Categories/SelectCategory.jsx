@@ -10,7 +10,7 @@ const SelectCategory = ({ categories }) => {
                 <Link href={`/category-${item.slug}`} className={style.HcrJ}>
                     <div className={style.cYaR}>
                         <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png'
-                            width={100} height={100} unoptimized={true} src={item.icon} alt={item.name} />
+                            width={100} height={100} unoptimized={true} src={item.icon||'/Images/'} alt={item.name} />
                     </div>
                     <span className={style.name}>{item.name}</span>
                 </Link>

@@ -57,7 +57,7 @@ const reducer = (state, action) => {
         case "INCREASE":
             const Index = state.items.findIndex(i => i.idp === action.payload.idp)
             let num = state.items[Index]
-            if (!(num.sizes.stock > num.quantity)) {
+            if (!(num.color.size.stock > num.quantity)) {
                 return {
                     ...state,
                     ...sumItems(state.items)

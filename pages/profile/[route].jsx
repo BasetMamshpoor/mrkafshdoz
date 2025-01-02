@@ -37,7 +37,7 @@ const Profile = () => {
                         </Component>
                     </div>
                 </div>
-            </main> : 'لطفا وارد حساب کاربری خود شوید'}
+            </main> : <div className='w-full h-screen centerOfParent'>لطفا وارد حساب کاربری خود شوید</div>}
         </>
     );
 };

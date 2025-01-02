@@ -12,7 +12,7 @@ import { InputOtp } from '@nextui-org/react';
 
 const Verify = () => {
     const { query, push } = useRouter()
-    const { email, forword } = query
+    const { mobile, forword } = query
 
     const Error = useRef()
 
@@ -25,15 +25,15 @@ const Verify = () => {
     const [sendAgain, setSendAgain] = useState(0)
 
     useEffect(() => {
-        if (!query.email)
+        if (!query.mobile)
             push('/auth/login')
         else {
             const send_otp = async () => {
-                await axios.post('/auth/send-otp', { email: query.email })
+                await axios.post('/auth/send-otp', { mobile: query.mobile })
                     .then(res => {
                         setLoadin(false)
                         SwalStyled.fire('ارسال شد', res.data.message, 'success')
-                        setResponse(res.data)
+                        setResponse({ expires_in: res.data.remain })
                     })
                     .catch(err => {
                         setLoadin(false)
@@ -44,11 +44,18 @@ const Verify = () => {
             send_otp()
         }
     }, [sendAgain])
+    
+    useEffect(() => {
+        if (value) {
+            handleSubmit({ preventDefault: () => { } })
+        }
+    }, [value])
+
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        if (value.length < 6) {
-            Error.current.innerText = 'طول کد 6 واحد است.'
+        if (value.length < 5) {
+            Error.current.innerText = 'طول کد 5 واحد است.'
         } else {
             Error.current.innerText = ''
             if (forword) {
@@ -58,7 +65,7 @@ const Verify = () => {
                     grant_type: 'otp_grant',
                     client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
                     client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-                    email,
+                    mobile,
                     otp: value,
                     provider: 'users'
                 }
@@ -68,7 +75,7 @@ const Verify = () => {
                         const user = await getUserInformation(data)
                         await push(`/${user.role}`)
                     })
-                    .catch(err => SwalStyled.fire('', err.response.data.message, 'error'))
+                    .catch(err => SwalStyled.fire('', err.response?.data.message, 'error'))
             }
         }
     }
@@ -93,7 +100,7 @@ const Verify = () => {
                                 <div dir='ltr'>
                                     <InputOtp
                                         classNames={{ base: 'w-full', segmentWrapper: 'justify-center w-full', segment: 'flex-[1_0_0] h-12' }}
-                                        length={6}
+                                        length={5}
                                         value={value}
                                         onValueChange={setValue} />
                                 </div>
@@ -112,7 +119,7 @@ const Verify = () => {
                             </form>
                             {query.forword ? <Link href={{
                                 pathname: '/auth/password',
-                                query: { email: query.email }
+                                query: { mobile: query.mobile }
                             }}>ورود با رمز عبور</Link> : null}
                         </> : <Loading />}
                     </div>

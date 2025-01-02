@@ -6,13 +6,13 @@ import PasswordValidation from 'Functions/PasswordValidation'
 import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox } from "react-icons/md";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 
-const ChangePassword = ({ swal, token, email, setIsOpen }) => {
+const ChangePassword = ({ swal, token, mobile, setIsOpen }) => {
     const [state, setState] = useState({ old_password: '', password: '', password_confirmation: '' })
     const input1 = useRef({})
     const input2 = useRef({})
     const input3 = useRef({})
 
-    const { length, letter, number, symbol, progress, isMatch } = PasswordValidation(state.password, state.password_confirmation)
+    const { isMatch } = PasswordValidation(state.password, state.password_confirmation)
 
     const handlePassword = async (e) => {
         e.preventDefault()
@@ -29,8 +29,7 @@ const ChangePassword = ({ swal, token, email, setIsOpen }) => {
     }
 
     const handleChange = e => {
-        const { value } = e.target
-        const { name } = e.target
+        const { value, name } = e.target
         setState(prev => {
             return {
                 ...prev,
@@ -74,32 +73,6 @@ const ChangePassword = ({ swal, token, email, setIsOpen }) => {
                             <span style={{ display: 'none' }}><IoEyeOffOutline /></span>
                         </div>
                     </div>
-                    <div className={style.passwordProgress}>
-                        <div className={style.progress} style={{
-                            width: `${progress * 25}%`,
-                            background: `${progress === 1 ? '#ff0000' : progress === 2 ? '#eeca06' : progress === 3 ? '#81c9fa' : '#5ccb5f'}`
-                        }}></div>
-                    </div>
-                    <div className={style.rules}>
-                        <ul className={style.ruleList}>
-                            <li className={style.rule}>
-                                {length ? <MdOutlineCheckBoxOutlineBlank /> : <MdOutlineCheckBox />}
-                                <p className={style.ruleMessage}>حداقل 8 حداکثر 64 کارکتر</p>
-                            </li>
-                            <li className={style.rule}>
-                                {letter ? <MdOutlineCheckBoxOutlineBlank /> : <MdOutlineCheckBox />}
-                                <p className={style.ruleMessage}>حداقل یک حرف (بزرگ و کوچک) انگلیسی</p>
-                            </li>
-                            <li className={style.rule}>
-                                {number ? <MdOutlineCheckBoxOutlineBlank /> : <MdOutlineCheckBox />}
-                                <p className={style.ruleMessage}>حداقل تعداد یک عدد</p>
-                            </li>
-                            <li className={style.rule}>
-                                {symbol ? <MdOutlineCheckBoxOutlineBlank /> : <MdOutlineCheckBox />}
-                                <p className={style.ruleMessage}>حداقل یکی از نشانه های (!,%,&,@,#,$,^,*,?,_,~)</p>
-                            </li>
-                        </ul>
-                    </div>
                     <div className={style.inputField}>
                         <input ref={input3} type="password" name='password_confirmation' className={style.input}
                             value={state.password_confirmation} onChange={handleChange}
@@ -113,14 +86,14 @@ const ChangePassword = ({ swal, token, email, setIsOpen }) => {
                         <ul className={style.ruleList}>
                             <li className={style.rule}>
                                 {isMatch ? <MdOutlineCheckBox /> : <MdOutlineCheckBoxOutlineBlank />}
-                                <p className={style.ruleMessage}>حداقل 8 حداکثر 64 کارکتر</p>
+                                <p className={style.ruleMessage}>حداقل 6 کارکتر</p>
                             </li>
                         </ul>
                     </div>
                     <button disabled={!isMatch ? true : false} className={`${style.btn} ${!isMatch ? style.disableButton : ''}`}>بررسی</button>
                 </form>
                 <div className={style.forgot_link}>
-                    <Link href={{ pathname: '/auth/verify', query: { email, forword: '/auth/forgotpassword' } }}>فراموشی رمز یا ایجاد اولین رمز عبور</Link>
+                    <Link href={{ pathname: '/auth/verify', query: { mobile, forword: '/auth/forgotpassword' } }}>فراموشی رمز یا ایجاد اولین رمز عبور</Link>
                 </div>
             </div>
         </>

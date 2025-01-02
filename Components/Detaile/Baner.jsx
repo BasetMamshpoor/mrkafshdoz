@@ -9,7 +9,7 @@ import { BsBuilding, BsShieldCheck } from 'react-icons/bs'
 import { MdOutlineInventory } from 'react-icons/md'
 import Link from 'next/link';
 
-const Baner = ({ product, size }) => {
+const Baner = ({ product, color, size, selectedColorInfo }) => {
     const { id, name, brand, offPercent, offPrice, price, image } = product
 
     const { state, dispatch } = useContext(CartContext)
@@ -46,7 +46,7 @@ const Baner = ({ product, size }) => {
                             موجود در انبار
                         </div>
                     </div>
-                    {!!size ? <>
+                    {!!color.sizes?.length ? <>
                         <div className={style.Ec3obT}>
                             {!!offPercent && <div className={style.vfdC}>
                                 <span className={style.Roff}>%{e2p(offPercent)}</span>
@@ -57,16 +57,16 @@ const Baner = ({ product, size }) => {
                             </div>
                         </div>
                         <div className={style.Tpn9Rq}>
-                            {IsInCart(state, id + size?.size) ? <>
+                            {IsInCart(state, id + color?.colorCode + size?.size) ? <>
                                 <div className={style.Xdptve13}>
-                                    <button className={`${style.inCr_p} ${quantityItem(state, id + size.size) >= size.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: 'INCREASE', payload: { ...product, idp: id + size.size } })}>
+                                    <button className={`${style.inCr_p} ${quantityItem(state, id + color.colorCode + size.size) >= size.stock ? style.enughNumber : ''}`} onClick={() => dispatch({ type: 'INCREASE', payload: { ...product, idp: id + color.colorCode + size.size } })}>
                                         <FiPlus />
                                     </button>
-                                    <span className={style.NamBer_P}>{e2p(quantityItem(state, id + size.size))}</span>
+                                    <span className={style.NamBer_P}>{e2p(quantityItem(state, id + color.colorCode + size.size))}</span>
                                     <button className={style.deCri_p}>
-                                        {quantityItem(state, id + size.size) < 2 ?
-                                            <FiTrash2 onClick={() => dispatch({ type: "REMOVE_ITEM", payload: { ...product, idp: id + size.size } })} /> :
-                                            <FiMinus onClick={() => dispatch({ type: "DECREASE", payload: { ...product, idp: id + size.size } })} />
+                                        {quantityItem(state, id + color.colorCode + size.size) < 2 ?
+                                            <FiTrash2 onClick={() => dispatch({ type: "REMOVE_ITEM", payload: { ...product, idp: id + color.colorCode + size.size } })} /> :
+                                            <FiMinus onClick={() => dispatch({ type: "DECREASE", payload: { ...product, idp: id + color.colorCode + size.size } })} />
                                         }
                                     </button>
                                 </div>
@@ -75,7 +75,7 @@ const Baner = ({ product, size }) => {
                                     <Link href="/cart">سبد خرید</Link>
                                 </div>
                             </> :
-                                <button className={style.aDd_tO_CaRt} onClick={() => dispatch({ type: "ADD_ITEM", payload: { ...product, sizes: size, idp: id + size.size } })}>افزودن به سبد</button>
+                                <button className={style.aDd_tO_CaRt} onClick={() => dispatch({ type: "ADD_ITEM", payload: { ...product, color: selectedColorInfo, idp: id + color.colorCode + size.size } })}>افزودن به سبد</button>
                             }
                         </div>
                     </> :

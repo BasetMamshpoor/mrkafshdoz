@@ -1,69 +1,40 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import style from './UploadImage.module.css'
-const UploadImage = ({ setProduct, images }) => {
+const UploadImage = ({ product, setProduct, images, image }) => {
 
-    useEffect(() => {
-        window.addEventListener('click', handleRemove)
-        return () => window.removeEventListener('click', handleRemove)
-    }, [])
-
-    function handleRemove(e) {
-        if (e.target.id === 'upload_img') {
-            const el = e.target.parentElement
-            const file = el.getAttribute('data-file')
-            const fileName = el.getAttribute('file-name')
-            setProduct(prev => {
-                if (fileName) {
-                    const { image, ...data } = prev
-                    return { ...data }
-                } else if (file) {
-                    const deletedImage = prev.images.find(i => i.name === file)
-                    const clearList = prev.images.filter(i => i !== deletedImage)
-                    return { ...prev, images: clearList }
-                }
-            })
-            el.remove();
-        }
-    }
+    const [modalVisible, setModalVisible] = useState(false);
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [previewImage, setPreviewImage] = useState(null);
 
     const handleMultipleImage = (e) => {
-        const imgArray = [];
-        const fileArry = e.target.parentElement.parentElement.parentElement.children[3]
-        for (const file of e.target.files) {
-            imgArray.push(file);
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.addEventListener('load', function () {
-                let html = `
-                <div class=${style.upload__img_box} data-file='${file.name}' >
-                    <img src='${this.result}' />
-                    <div class=${style.upload__img_close} id='upload_img'></div>
-                </div>`;
-                fileArry.innerHTML += html
-            })
-        }
-        setProduct(prev => {
-            return {
-                ...prev,
-                images: [...prev.images, ...imgArray]
-            }
-        })
-    }
-
-    const handleMainImg = (e) => {
-        const fileArry = e.target.parentElement.parentElement.parentElement.children[2]
-        fileArry.innerHTML = ''
-        const file = e.target.files[0]
+        const file = e.target.files[0];
+        if (!file) return;
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.addEventListener('load', function () {
-            let html = `
-                <div class=${style.main_img} file-name='${file.name}'>
-                    <img src='${this.result}'/>
-                    <div class=${style.upload__img_close} id='upload_img'></div>
-                </div>`;
-            fileArry.innerHTML += html
+            setPreviewImage(this.result);
+            setSelectedFile(file);
+            setModalVisible(true);
         })
+    }
+
+    const handleColorSelect = (color) => {
+        if (selectedFile) {
+            setProduct((prev) => ({
+                ...prev,
+                images: [
+                    ...prev.images,
+                    { color: color.color, src: selectedFile },
+                ],
+            }));
+        }
+        setModalVisible(false);
+        setSelectedFile(null);
+        setPreviewImage(null);
+    };
+
+    const handleMainImg = (e) => {
+        const file = e.target.files[0]
         setProduct(prev => {
             return {
                 ...prev,
@@ -124,12 +95,80 @@ const UploadImage = ({ setProduct, images }) => {
                         <p>آپلود تصاویر</p>
                         <input onChange={handleMultipleImage}
                             type="file" name="image" id="inputFiles"
-                            hidden multiple
+                            hidden
                             accept='image/jpeg, image/jpg, image/png, image/webp' />
                     </label>
                 </div>
-                <div className={style.upload_main_img_wrap}></div>
-                <div className={style.upload__img_wrap}> </div>
+                <div className={style.upload_main_img_wrap}>
+                    {product.image && <div className={style.main_img}>
+                        <img src={URL.createObjectURL(product.image)} />
+                        <div className={style.upload__img_close} onClick={() => {
+                            setProduct((prev) => {
+                                const { image, ...pre } = prev
+                                return pre
+                            });
+                        }}></div>
+                    </div>}
+                </div>
+                <div className="image-preview-container flex flex-wrap gap-4 mt-4">
+                    {product.images.map((img, index) => {
+                        const objectUrl = URL.createObjectURL(img.src);
+                        return (
+                            <div key={index} className="relative">
+                                <img
+                                    src={objectUrl}
+                                    alt={`Uploaded ${index}`}
+                                    className="w-32 h-32 object-cover rounded-lg"
+                                />
+                                <div
+                                    className="centerOfParent absolute top-2 right-2 bg-red-500 text-white w-6 h-6 rounded-full cursor-pointer"
+                                    onClick={() => {
+                                        setProduct((prev) => ({
+                                            ...prev,
+                                            images: prev.images.filter((_, i) => i !== index),
+                                        }));
+                                    }}
+                                >×</div>
+                                <span className="block mt-2 text-sm text-gray-700">
+                                    رنگ: {img.color}
+                                </span>
+                            </div>
+                        )
+                    })}
+                </div>
+                {modalVisible && (
+                    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
+                        <div className="bg-white rounded-lg shadow-lg w-96 p-6">
+                            <h3 className="text-lg font-semibold mb-4 text-gray-700">انتخاب رنگ</h3>
+                            <img
+                                src={previewImage}
+                                alt="Preview"
+                                className="w-full h-48 object-cover rounded-lg mb-4"
+                            />
+                            <ul className="flex flex-wrap gap-1">
+                                {product.colors.map((color, index) => (
+                                    <li
+                                        key={index}
+                                        className="flex items-center gap-1 px-2 py-1 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200 transition"
+                                        onClick={() => handleColorSelect(color)}
+                                    >
+                                        <span
+                                            style={{ backgroundColor: color.colorCode }}
+                                            className="w-6 h-6 rounded-full border"
+                                        ></span>
+                                        <span className="text-gray-700">{color.color}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <button
+                                onClick={() => setModalVisible(false)}
+                                className="mt-4 w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+                            >
+                                لغو
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
         </>
     );
