@@ -34,8 +34,6 @@ export default function (params) {
     // city
     if (!params.city) {
         errors.city = true
-    } else if (!params.city.trim()) {
-        errors.city = true
     } else {
         delete errors.city
     }

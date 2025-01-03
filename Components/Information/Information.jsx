@@ -16,7 +16,7 @@ const Information = () => {
     return (
         <>
             <div className={style.UBtgvIR4}>
-                {Object.keys(user).length > 0 ? <div className={style.lOmph0}>
+                {Object.keys(user).length > 0 ? <div className='grid sm:grid-cols-2 gap-4 grid-cols-1'>
                     <div className={style.kLRx8Fh}>
                         <EditModal value={user.first_name} titleFa='نام' titleEn='name' type='text' />
                         <div className={style.GvrclT4}>

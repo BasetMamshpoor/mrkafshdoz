@@ -68,7 +68,7 @@ const AddAddress = ({ SwalStyled, reload, user, edit, router }) => {
         return searchResult.map(i => {
             return (
                 <li key={i.location.x + i.location.y} className={style.place} onClick={() => handleClick(i)}>
-                    <pre className={style.placeinfo}>
+                    <div className={style.placeinfo}>
                         <div className={style.placeIcon}>
                             <FiMapPin />
                         </div>
@@ -76,7 +76,7 @@ const AddAddress = ({ SwalStyled, reload, user, edit, router }) => {
                             <p className={style.top}>{i.title}</p>
                             <p className={style.bottom}>{i.region}</p>
                         </div>
-                    </pre>
+                    </div>
                 </li>
             )
         })

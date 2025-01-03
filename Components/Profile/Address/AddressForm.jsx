@@ -11,22 +11,19 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen, router }
     const [cities, setCities] = useState([])
     const [address, setAddress] = useState({})
     const [touch, setTouch] = useState({})
-
+    
     const headers = { Authorization: `${user?.token_type} ${user?.access_token}` }
     let errors = validation(address)
-
+    
     useEffect(() => {
         const newCities = findCities(Cities, data.state)
         setCities(newCities)
-        setAddress(prev => {
-            return {
-                ...prev,
-                ...searchProvinces(data, Provinces, newCities),
-                latitude: data.latitude, longitude: data.longitude,
-                address: data.formatted_address.slice(data.formatted_address.indexOf('،') + 1),
-                title: !!edit ? edit.title : '', postalcode: !!edit ? edit.postalcode : '',
-                name: !!edit ? edit.name : '', cellphone: !!edit ? edit.cellphone : '',
-            }
+        setAddress({
+            ...searchProvinces(data, Provinces, newCities),
+            latitude: data.latitude, longitude: data.longitude,
+            address: data.formatted_address.slice(data.formatted_address.indexOf('،') + 1),
+            title: !!edit ? edit.title : '', postalcode: !!edit ? edit.postalcode : '',
+            name: !!edit ? edit.name : '', cellphone: !!edit ? edit.cellphone : '',
         })
     }, [])
 
@@ -53,6 +50,17 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen, router }
                 [name]: value
             }
         })
+    }
+    const handleProvinceChange = (name, value) => {
+        const newCities = findCities(Cities, value)
+        setAddress(prev => {
+            return {
+                ...prev,
+                [name]: value,
+                city: newCities[0].value
+            }
+        })
+        setCities(newCities)
     }
 
     const handleSabmit = async (e) => {
@@ -109,7 +117,7 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen, router }
                                 <label className={style.label}>استان <span className={style.star}>*</span></label>
                                 <div className={`${style.dropdown} ${(touch.province && !!errors.province) ? style.error : ''}`}>
                                     <DropDown label array={Provinces} defaultValue={address.province}
-                                        name={'province'} setState={handleChange} Searchable />
+                                        name={'province'} setState={handleProvinceChange} Searchable />
                                 </div>
                             </div>
                             <div className={style.field}>

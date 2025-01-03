@@ -16,7 +16,7 @@ const Slider = () => {
     return (
         <>
             <section className="main_slider">
-                <div className="container">
+                <div className="containerCustom">
                     <div className="main_slide">
                         <Swiper
                             navigation

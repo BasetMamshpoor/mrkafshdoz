@@ -1,4 +1,3 @@
-import { e2p } from 'Functions/ConvertNumbers';
 import style from './Order.module.css';
 import { FiCalendar, FiArrowUpLeft, FiUser, FiPhone } from "react-icons/fi";
 import { BsThreeDotsVertical, BsBuilding, BsArrowRight, BsTruck } from "react-icons/bs";
@@ -10,11 +9,15 @@ import addComma from 'Functions/addComma';
 import useGetPrivatRequest from 'hooks/useGetPrivatRequest';
 import Loading from 'Components/Loading';
 import { useRouter } from 'next/router';
+import PdfOnButtonClick from './PdfGeneratorWithData ';
+import SendOrder from './SendOrder';
+import useAxios from 'hooks/useAxios';
 
 const Order = ({ data, setSingleOrder }) => {
+    const { AxiosPrivate } = useAxios()
     const router = useRouter();
     const { order: orderID, ...queries } = router.query
-    const [order] = useGetPrivatRequest(`/admin/orders/${orderID ?? data}`)
+    const [order] = useGetPrivatRequest(`/admin/orders/${orderID ?? data.id}`)
 
     const imageUrl = `https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${order?.address.latitude},${order?.address.longitude}/12?mapSize=120,120&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY}`
 
@@ -46,15 +49,32 @@ const Order = ({ data, setSingleOrder }) => {
         setSingleOrder()
         router.push({ pathname: router.pathname, query: queries }, undefined, { shallow: true })
     }
+
+    const handleDeliver = async () => {
+        if (window.confirm('آیا از تغییر حالت مطمئن هستید؟'))
+            await AxiosPrivate.patch(`/order/update/${order.id}`, { order_status_id: 4 })
+                .then(res => { alert(res.data.message || 'سفارش تحویل داده شد'); OrderList() })
+                .catch(err => alert(err.response?.data.message || 'سفارش تحویل داده نشد'))
+    }
+    const handleCancell = async () => {
+        if (window.confirm('از لغو سفارش مطمئن هستید؟'))
+            await AxiosPrivate.patch(`/order/update/${order.id}`, { order_status_id: 5 })
+                .then(res => { alert(res.data.message || 'سفارش لغو شد'); OrderList() })
+                .catch(err => alert(err.response?.data.message || 'سفارش لغو نشد'))
+    }
+
     return (
         <>
             {!!order ? <div className={style.order} dir='auto'>
                 <div className={style.container}>
-                    <div className={style.header}>
-                        <button className={style.go_back} onClick={() => OrderList()}><BsArrowRight /></button>
-                        <div className={style.order_code}>
-                            <p>سفارش</p> <span>{e2p(order.code)}</span>
+                    <div className="flex items-center justify-between p-6 border-b">
+                        <div className={style.header}>
+                            <button className={style.go_back} onClick={() => OrderList()}><BsArrowRight /></button>
+                            <div className={style.order_code}>
+                                <p>سفارش</p> <span>{(order.code)}</span>
+                            </div>
                         </div>
+                        <PdfOnButtonClick data={order} />
                     </div>
                     <div className={style.navbar}>
                         <div className={style.info}>
@@ -73,7 +93,10 @@ const Order = ({ data, setSingleOrder }) => {
                         </div>
                         <div className={style.actions}>
                             <button className={style.fulfill}><BsTruck />آماده ارسال</button>
-                            <div className={style.more_actions}>
+                            {order.order_status_id == 2 && <SendOrder order_id={order.id} setOnOrder={setSingleOrder} />}
+                            {order.order_status_id == 3 && <button type='button' onClick={handleDeliver} className='!bg-green-500 text-sm text-white py-2 px-3 rounded-lg'>تحویل داده شد</button>}
+                            {order.order_status_id != 5 && <button type='button' onClick={handleCancell} className='!bg-red-500 text-sm text-white py-2 px-3 rounded-lg'>لغو سفارش</button>}
+                            {/* <div className={style.more_actions}>
                                 <button className={style.action_icon}><BsThreeDotsVertical /></button>
                                 <div className={style.popup}>
                                     <ul className={style.popuop_list}>
@@ -81,14 +104,14 @@ const Order = ({ data, setSingleOrder }) => {
                                         <li>لغو قسمتی از سفارش</li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className={style.main}>
                         <div className={style.customer}>
                             <div className={style.title}>مشتری</div>
                             <div className={style.user}>
-                                <Link href={`/admin/users`} target='_blank'>
+                                <div className='flex items-center justify-between'>
                                     <div className={style.user_profile}>
                                         <div className={style.user_image}>
                                             <img src={UserProf.src} alt="" />
@@ -96,7 +119,7 @@ const Order = ({ data, setSingleOrder }) => {
                                         <p className={style.user_name}>{order.user.name}</p>
                                     </div>
                                     <button className={style.user_arrow}><FiArrowUpLeft /></button>
-                                </Link>
+                                </div>
                             </div>
                             <div className={style.contact}>
                                 <p className={style.sm_title}>مشخصات گیرنده</p>
@@ -114,17 +137,17 @@ const Order = ({ data, setSingleOrder }) => {
                                         <ul className={style.address}>
                                             <li className={style.address_main}>{order.address.province} - {order.address.city} - {order.address.address}</li>
                                             <li className={style.number_house}>
-                                                <span>پلاک: </span>{e2p(order.address.number)}
+                                                <span>پلاک: </span>{(order.address.number)}
                                                 <b>|</b>
-                                                <span>واحد: </span>{e2p(order.address.unit ?? 0)}
+                                                <span>واحد: </span>{(order.address.unit ?? 0)}
                                             </li>
-                                            <li className={style.postalcode}><span>کدپستی: </span>{e2p(order.address.postalcode)}</li>
+                                            <li className={style.postalcode}><span>کدپستی: </span>{(order.address.postalcode)}</li>
                                         </ul>
-                                        <div className={style.simple_map_img}>
-                                            <Image src={!!imageUrl ? imageUrl : '/Images/placeholder-1.png'}
+                                        <a target='_blank' href={`https://nshn.ir/?lat=${order?.address.latitude}&lng=${order?.address.longitude}`} className='w-full h-fit overflow-hidden rounded-lg'>
+                                            <Image src={!!imageUrl ? imageUrl : '/Images/placeholder-1.png'} className='rounded-lg'
                                                 placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100}
                                                 height={100} unoptimized={true} alt='' />
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +191,7 @@ const Order = ({ data, setSingleOrder }) => {
                                                         </div>
                                                     </div>
                                                     <div className={style.pricing}>
-                                                        <div className={style.quantity}><span>تعداد</span>{e2p(p.quantity)}</div>
+                                                        <div className={style.quantity}><span>تعداد</span>{(p.quantity)}</div>
                                                         <div className={style.subtotal}><span>جمع قیمت</span>{addComma(p.subtotal)}</div>
                                                     </div>
                                                 </div>
@@ -181,7 +204,7 @@ const Order = ({ data, setSingleOrder }) => {
                                 <div className={style.sm_title}>خلاصه پرداخت</div>
                                 <div className={style.pricing_detail}>
                                     <ul>
-                                        <li className={style.pricing_item}><b>تعداد کل محصولات: </b><span className={style.all_quantity}>{e2p(order.total_items)}</span></li>
+                                        <li className={style.pricing_item}><b>تعداد کل محصولات: </b><span className={style.all_quantity}>{(order.total_items)}</span></li>
                                         <li className={style.pricing_item}><b>قیمت کل: </b><span className={style.value}>{addComma(order.total_preOffPrice)}</span></li>
                                         <li className={style.pricing_item}><b>مقدار تخفیف: </b><span className={style.value}>{addComma(order.total_discount)}</span></li>
                                         <li className={style.pricing_item}><b>پرداخت شده: </b><span className={style.value}>{addComma(order.total_price)}</span></li>

@@ -11,6 +11,7 @@ import { e2p } from 'Functions/ConvertNumbers';
 import addComma from 'Functions/addComma';
 import { CiDiscount1 } from 'react-icons/ci'
 import { Categories } from 'providers/CategoriesProvider';
+import Timer from 'Components/Timer';
 
 const DailyOffer = () => {
 
@@ -20,32 +21,68 @@ const DailyOffer = () => {
     return (
         <>
             <section className='dealyOff'>
-                {!!data && <div className="container">
+                {!!data && <div className="containerCustom">
                     <div className="kfIu">
                         <div dir='rtl' className='slideList'>
                             <Swiper
                                 modules={[Navigation]}
                                 navigation
                                 spaceBetween={5}
-                                slidesPerView={6}
+                                // slidesPerView={6}
                                 centeredSlides={false}
                                 breakpoints={{
                                     0: {
-                                        slidesPerView: 2,
+                                        slidesPerView: 1.2,
+                                    },
+                                    300: {
+                                        slidesPerView: 1.5,
+                                    },
+                                    319: {
+                                        slidesPerView: 1.8,
+                                    },
+                                    400: {
+                                        slidesPerView: 2.2,
+                                    },
+                                    460: {
+                                        slidesPerView: 2.5,
+                                    },
+                                    500: {
+                                        slidesPerView: 2.8,
+                                    },
+                                    570: {
+                                        slidesPerView: 3.2,
                                     },
                                     640: {
-                                        slidesPerView: 3,
+                                        slidesPerView: 3.5,
+                                    },
+                                    700: {
+                                        slidesPerView: 3.8,
                                     },
                                     768: {
                                         slidesPerView: 4,
                                     },
-                                    992: {
+                                    825: {
+                                        slidesPerView: 4.2,
+                                    },
+                                    910: {
+                                        slidesPerView: 4.5,
+                                    },
+                                    975: {
+                                        slidesPerView: 4.8,
+                                    },
+                                    1024: {
                                         slidesPerView: 5,
                                     },
-                                    1200: {
-                                        slidesPerView: 6,
+                                    1080: {
+                                        slidesPerView: 5.2,
                                     },
-                                    1980: {
+                                    1160: {
+                                        slidesPerView: 5.5,
+                                    },
+                                    1230: {
+                                        slidesPerView: 5.8,
+                                    },
+                                    1270: {
                                         slidesPerView: 6,
                                     },
                                 }}
@@ -62,17 +99,24 @@ const DailyOffer = () => {
                                     </div>
                                 </SwiperSlide>
                                 {data.map((el, index) => {
+                                    // const timeDiscount = el.offPrice ? ((new Date(el?.off_date_to).getTime() - new Date().getTime()) / 1000).toFixed() : null
                                     if (index < 9) {
                                         return (
                                             <SwiperSlide key={el.id}>
                                                 <Link href={`/products/${el.id}`} className='Jqz-03x'>
                                                     <div className="wsapJ">
-                                                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100} height={100} unoptimized={true} src={el.image} alt="" />
+                                                        <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png'
+                                                            width={0}
+                                                            height={0} sizes='100vw' unoptimized={true} src={el.image} alt="" />
                                                         <span>%{e2p(el.offPercent)}</span>
                                                     </div>
                                                     <div className="oHbsI">
+                                                        <div className='line-clamp-2 text-right'>{el.name}</div>
                                                         <p>{addComma(el.offPrice)}</p>
                                                         <span>{addComma(el.price)}</span>
+                                                        {/* {!!el.offPrice && (timeDiscount < 86400) && <>
+                                                            <Timer message='اتمام تخفیف' time={timeDiscount} />
+                                                        </>} */}
                                                     </div>
                                                 </Link>
                                             </SwiperSlide>

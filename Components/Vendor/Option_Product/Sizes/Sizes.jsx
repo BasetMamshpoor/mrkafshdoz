@@ -61,7 +61,7 @@ const ColorsAndSizes = ({ setProduct, errors, touch }) => {
                         name="color"
                         value={currentColor.color}
                         onChange={handleColorChange}
-                        className="p-2 w-full"
+                        className="p-2 sm:w-full w-32"
                     />
                     <input
                         type="color"
@@ -79,7 +79,7 @@ const ColorsAndSizes = ({ setProduct, errors, touch }) => {
                         name="size"
                         value={currentSize.size}
                         onChange={handleSizeChange}
-                        className="p-2 w-full"
+                        className="p-2 sm:w-full w-10"
                     />
                     <input
                         type="number"
@@ -88,12 +88,12 @@ const ColorsAndSizes = ({ setProduct, errors, touch }) => {
                         value={currentSize.stock}
                         onChange={handleSizeChange}
                         min="1"
-                        className="p-2 w-full"
+                        className="p-2 sm:w-full w-10"
                     />
                     <button
                         onClick={handleAddSize}
                         type="button"
-                        className="bg-blue-500 text-white rounded p-2 flex items-center"
+                        className="text-blue-500 rounded p-2 flex items-center"
                     >
                         <BsPlus />
                     </button>
@@ -102,9 +102,10 @@ const ColorsAndSizes = ({ setProduct, errors, touch }) => {
                 <button
                     type="button"
                     onClick={handleAddColor}
-                    className="bg-green-500 text-white py-2 px-4 rounded"
+                    className="bg-green-500 text-white sm:py-2 sm:px-4 px-2 rounded"
                 >
-                    افزودن رنگ
+                    <span className='sm:block hidden whitespace-nowrap'>افزودن رنگ</span>
+                    <span className='sm:hidden centerOfParent'><BsPlus /></span>
                 </button>
             </div>
             {(formError.size || formError.color) && <p className="text-red-500 text-sm">{formError.size}  {formError.color}</p>}

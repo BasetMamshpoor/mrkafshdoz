@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -21,15 +21,22 @@ import axios from "axios";
 import { Authorization } from "providers/AuthorizationProvider";
 import { Functions } from "providers/FunctionsProvider";
 
-const DetaileSlider = ({ Images, isBookmarked, id }) => {
+const DetaileSlider = ({ Images, isBookmarked, id, color }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const swiperRef = useRef(null);
     const [like, setLike] = useState(isBookmarked)
     const { tokens } = useContext(Authorization)
     const { SwalStyled } = useContext(Functions)
     const headers = {
         Authorization: `${tokens?.token_type} ${tokens?.access_token}`
     }
-    
+    useEffect(() => {
+        const index = Images.findIndex(image => image.color === color);
+        if (index !== -1 && swiperRef.current) {
+            swiperRef.current.swiper.slideTo(index);
+        }
+    }, [color])
+
     const handleBookmark = async () => {
         if (tokens) {
             await axios.post('/bookmark', { product_id: id }, { headers })
@@ -72,6 +79,7 @@ const DetaileSlider = ({ Images, isBookmarked, id }) => {
         <>
             <div dir="rtl" className={`DetailSlider ${style.slider}`} >
                 <Swiper
+                    ref={swiperRef}
                     navigation={true}
                     spaceBetween={15}
                     thumbs={{ swiper: thumbsSwiper }}

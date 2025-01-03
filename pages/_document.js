@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en" className="scroll-smooth">
       <Head />
-      <body className="antialiased" dir="rtl">
+      <body className="antialiased font-iransansNum" dir="rtl">
         <Main />
         <NextScript />
       </body>

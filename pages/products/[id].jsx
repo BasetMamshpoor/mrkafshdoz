@@ -22,7 +22,7 @@ const ProductDetaile = () => {
 
     const [color, setColor] = useState({})
     const [size, setSize] = useState({})
-    const [selectedColorInfo, setSelectedColorInfo] = useState({}); // نام جدید
+    const [selectedColorInfo, setSelectedColorInfo] = useState({});
 
     useEffect(() => {
         if (!!data && data.product.colors) {
@@ -106,7 +106,7 @@ const ProductDetaile = () => {
                                 </div>
                                 <div className="col-lg-5">
                                     {!!data.product.off_date_to && <OfferTime off_date_to={data.product.off_date_to} />}
-                                    <DetaileSlider Images={data.product.images} isBookmarked={data.product.isBookmarked}
+                                    <DetaileSlider color={color.color} Images={data.product.images} isBookmarked={data.product.isBookmarked}
                                         id={data.product.id} />
                                 </div>
                             </div> : <Loading />}

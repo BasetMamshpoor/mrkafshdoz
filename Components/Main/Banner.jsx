@@ -8,11 +8,11 @@ const Banner = () => {
     return (
         <>
             <div className={style.Banner}>
-                <div className="!px-4 container">
-                    <div className='grid md:grid-cols-4 grid-cols-2 items-center gap-2'>
+                <div className="container">
+                    <div className='grid items-center grid-cols-2 gap-2 md:grid-cols-4'>
                         {banners && banners.map(b => {
-                            return (<Link href={b.link} className='flex items-center justify-center rounded-lg overflow-hidden h-fit' key={b.id}>
-                                <Image src={b.src} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} width={0} height={0} sizes='100vw' className='w-full h-full object-contain' alt='' />
+                            return (<Link href={b.link} className='flex items-center justify-center rounded-lg overflow-hidden h-fit w-full max-h-[calc(100vw*calc(9/16))]' key={b.id}>
+                                <Image src={b.src} placeholder='blur' blurDataURL='/Images/placeholder-1.png' unoptimized={true} width={0} height={0} sizes='100vw' className='w-full h-full object-cover' alt='' />
                             </Link>)
                         })}
                     </div>

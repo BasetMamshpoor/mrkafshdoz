@@ -2,6 +2,9 @@
 
 const nextConfig = {
   reactStrictMode: false,
+  images: {
+    domains: ['api.mrkafshdoz.com'],
+  },
   async redirects() {
     return [
       {
