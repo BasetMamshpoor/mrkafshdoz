@@ -1,0 +1,144 @@
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  direction: rtl;
+  overflow: hidden;
+  height: fit-content;
+  padding: 0.7rem 0;
+}
+.navbar {
+  padding: 0 10px;
+}
+.search {
+  width: 100%;
+  padding: 2px 12px 2px 4px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px -10px rgba(0, 0, 0, 0.7);
+  background: #f0f0f1;
+}
+.content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 4px 0;
+}
+.searchIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.searchIcon svg {
+  fill: #a1a3a8;
+  width: 24px;
+  height: 24px;
+}
+.placeholder {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #a1a3a8;
+}
+.mobileLogo {
+  height: 30px;
+  width: 180px;
+}
+.menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9990;
+  background: #fff;
+  border-top: 1px solid #eee;
+  direction: rtl;
+  height: fit-content;
+  overflow: hidden;
+}
+.Exune {
+  padding: 0 10px;
+}
+.wrapper {
+  align-items: center;
+  justify-content: space-between;
+}
+.item {
+  flex: 0 0 calc(100% / 5);
+}
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0.5rem 0;
+}
+.link::after {
+  display: block;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: rgba(0, 0, 0, .1);
+  position: absolute;
+  transition: width 0.3s;
+  filter: blur(1px);
+}
+.link:hover:after {
+  animation: fade 0.3s linear;
+}
+@keyframes fade {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
+.menuIcone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+.menuIcone svg {
+  fill: #a1a3a8;
+}
+.itemsCounter {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3499ff;
+  color: #fff;
+  min-width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  top: 7px;
+  right: -5px;
+}
+.itemsCounter span {
+  font-size: 11px;
+  position: relative;
+  top: 0.5px;
+}
+.name {
+  font-size: 12px;
+  color: #a1a3a8;
+}
+.active .name,
+.active .menuIcone svg {
+  color: #000;
+  fill: #000;
+  font-weight: 900;
+}

@@ -1,0 +1,73 @@
+.middleNav {
+  position: relative;
+  background: rgb(255, 255, 255);
+  direction: rtl;
+}
+
+.navSearchTop {
+  position: relative;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 250ms ease-in-out 0s;
+}
+.mobileLogo {
+  display: none;
+  height: 64px;
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.user {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  margin: 0 1rem;
+}
+
+.user > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  padding: 6px 12px;
+}
+.border {
+  height: 40px;
+  width: 1px;
+  background: #eee;
+  padding: 0;
+  margin: 0 0.5rem;
+}
+.countItem {
+  position: absolute;
+  top: -3px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3499ff;
+  border-radius: 50%;
+  padding: 0 4px;
+}
+.countItem span {
+  color: #fff;
+  font-size: 12px;
+}
+@media (max-width: 992.98px) {
+  .mobileLogo {
+    display: block;
+  }
+  .navLogo {
+    display: none;
+  }
+  .user {
+    display: none;
+  }
+}

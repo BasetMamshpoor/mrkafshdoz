@@ -1,0 +1,23 @@
+.under::before {
+  content: "";
+  height: 100%;
+  width: 3px;
+  border-radius: 10px;
+  background: #558bc0;
+  position: absolute;
+  top: 0;
+  right: 8px;
+}
+.text input:checked ~ .gbPol {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text input:checked ~ .gbPol::before {
+  content: "\F095\00FE0E";
+  font-family: Icon;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}

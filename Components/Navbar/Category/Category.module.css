@@ -1,0 +1,137 @@
+.hidden {
+  display: none !important;
+}
+.show {
+  display: flex;
+}
+.categorybg {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 12.1rem;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  user-select: none;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
+.cat_menu {
+  background: #fff;
+  max-width: 1536px;
+  width: 100%;
+  min-height: 390px;
+  max-height: 450px;
+  height: 100%;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 14%), 0 4px 8px rgb(0 0 0 / 30%);
+  overflow: hidden;
+}
+.cat_gender {
+  padding: 0 1rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+.cat_gender ul {
+  align-items: center;
+  justify-content: center;
+}
+.cat_gender_menu {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+}
+.cat_gender_apparel {
+  width: 120px;
+  height: 100%;
+  flex-shrink: 0;
+}
+.cat_gender_apparel ul {
+  overflow: scroll;
+  border-left: 1px solid #eee;
+  height: 100%;
+  padding: 0.5rem 10px 0.5rem 1px;
+  flex-direction: column;
+  direction: ltr;
+}
+.apparel_type {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 10px 20px;
+  overflow: scroll;
+}
+.gender {
+  margin: 0 10px;
+  padding: 5px;
+}
+.gender_active {
+  border-bottom: 1px solid red;
+}
+.gender_active a {
+  color: red;
+}
+.gender_apparel {
+  text-align: right;
+  margin: 25px 0;
+  position: relative;
+  cursor: pointer;
+}
+.gender_apparel a {
+  display: block;
+  width: 100%;
+}
+.apparel_active a {
+  color: #3499ff;
+}
+.apparel_active::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: #3499ff;
+  border-radius: 10px;
+  left: -1px;
+  top: 0;
+}
+.article {
+  flex: 0 0 155px;
+  height: 140px;
+}
+.article a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+.article a:hover span {
+  color: #000;
+}
+.article a:hover .art_img {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+}
+.article a:hover .art_img img {
+  transform: scale(1.1);
+}
+.art_img {
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+}
+.art_img img {
+  transition: all 0.3s ease;
+}
+.art_name span {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.7);
+}

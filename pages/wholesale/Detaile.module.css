@@ -1,0 +1,214 @@
+.main {
+  padding-top: 1rem;
+}
+.Iwalh {
+  padding: 1.5rem 0;
+}
+
+/* ================================================================ */
+.Cxwply {
+  width: 100%;
+  border-bottom: 1px solid rgba(150, 150, 150, 0.5);
+  padding-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.Cxwply h1 {
+  padding-right: 1rem;
+  font-size: 20px;
+  text-shadow: 0 0 5px rgba(110, 110, 110, 0.5);
+}
+.option {
+  position: relative;
+}
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.dots:hover {
+  background: #eee;
+}
+.menu {
+  position: absolute;
+  top: 0.5rem;
+  left: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  flex-direction: column;
+  background: #fff;
+  padding: 3px;
+  width: 100px;
+}
+.menu_item {
+  padding: 8px 4px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.menu_item:hover {
+  background: #eee;
+}
+.menu :first-child {
+  padding-top: 4px;
+}
+.menu :last-child {
+  border: none;
+  padding-bottom: 4px;
+}
+.esohby {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.cKyf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex: 1 0 30%;
+  padding: 0.5rem;
+  position: relative;
+}
+.cKyf:nth-child(2) ::after,
+.cKyf:nth-child(2) ::before {
+  content: "";
+  width: 1px;
+  height: 50px;
+  position: absolute;
+  top: 1.5rem;
+  background: rgba(196, 196, 196, 0.555);
+}
+.cKyf:nth-child(2) ::after {
+  left: 0;
+}
+.cKyf:nth-child(2) ::before {
+  right: 0;
+}
+.pxty svg {
+  margin-bottom: 0.5rem;
+  width: 36px;
+  height: 36px;
+  color: #34506dc5;
+}
+.cKyf span {
+  font-size: 12px;
+  color: #3d4146a4;
+}
+
+.zOiOz {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  padding-right: 1rem;
+}
+.Redxws {
+  display: flex;
+  align-items: center;
+}
+.Redxws p {
+  font-size: 12px;
+  color: #81858b;
+}
+.Fcesop::before {
+  content: "\F04D\00FE0E";
+  font-family: Icon;
+  font-size: 22px;
+  margin-left: 0.5rem;
+}
+.LttOp::before {
+  content: "\F05E\00FE0E";
+  font-family: Icon;
+  font-size: 22px;
+  margin-left: 0.5rem;
+}
+
+/* ======================================================== */
+.c9C4xp {
+  border-bottom: 1px solid #ccc;
+}
+.p_Eoxf {
+  align-items: center;
+}
+.ycrQl {
+  position: relative;
+  padding: 0.5rem 0.5rem 0;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.ycrQl a {
+  font-size: 13px;
+  padding-bottom: 0.3rem;
+}
+
+.obActive::before {
+  content: "";
+  width: 100%;
+  height: 4px;
+  background: #3499ff;
+  border-radius: 15px 15px 0 0;
+}
+.obActive a {
+  color: #3499ff;
+}
+/* ==== */
+
+.Loading {
+  height: calc(100vh - 425px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* responsive */
+@media (max-width: 1023.98px) {
+  .main {
+    padding-top: 0;
+  }
+  .mobile_Dis {
+    flex-direction: column-reverse;
+  }
+  .Cxwply {
+    margin-top: 1rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .Iwalh {
+    padding: 0;
+  }
+  .c9C4xp {
+    display: none;
+  }
+  .Cxwply h1 {
+    padding-right: 0.5rem;
+    font-size: 14px;
+  }
+  .pxty svg {
+    margin-bottom: 0.5rem;
+    width: 24px;
+    height: 24px;
+    color: #34506dc5;
+  }
+  .cKyf span {
+    font-size: 11px;
+    color: #3d4146a4;
+  }
+  .zOiOz {
+    margin-top: 0.5rem;
+  }
+  .Redxws p {
+    font-size: 11px;
+  }
+}

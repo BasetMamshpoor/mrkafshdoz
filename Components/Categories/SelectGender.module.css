@@ -1,0 +1,44 @@
+.selectGender {
+  display: block;
+  direction: rtl;
+}
+.genders {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 1rem;
+}
+.gender {
+  border-radius: 10px;
+  box-shadow: 0 0px 10px 0 #0000002e;
+  width: 200px;
+}
+.act_gender {
+  box-shadow: 0 0px 10px 0 #349aff4e;
+}
+.g_link {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+}
+.g_link p {
+  font-size: 14px;
+  color: #818181;
+}
+@media (max-width: 768.98px) {
+  .gender {
+    width: 160px;
+  }
+}
+@media (max-width: 475.98px) {
+  .genders {
+    gap: 15px 5px;
+    justify-content: space-evenly;
+  }
+  .gender {
+    width: 100px;
+  }
+}

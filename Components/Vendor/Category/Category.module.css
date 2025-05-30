@@ -1,0 +1,144 @@
+.category {
+  padding: 10px 0;
+  margin: 0 10px;
+}
+.Ec7Hy2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cat_lvl_ {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.Head_t0 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  height: 32px;
+  border-bottom: 1px solid #eee;
+}
+.Head_t0 p {
+  font-size: 16px;
+}
+._add_newOne {
+  outline: none;
+  background: none;
+  border: 2px solid #3499ff;
+  color: #3499ff;
+  border-radius: 10px;
+  padding: 0;
+  margin: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+}
+._add_newOne:hover {
+  background: #3499ff;
+  color: #fff;
+}
+.Jxy_2tvi {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.article {
+  position: relative;
+  flex: 0 0 20%;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 10px;
+}
+.active span {
+  color: #3499ff !important;
+  font-weight: 900;
+}
+.active .art_img {
+  box-shadow: 0 1px 5px #349aff8b;
+}
+.box_cat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  height: 100%;
+}
+.article:hover span {
+  color: #000;
+}
+.article:hover .art_img {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+}
+.art_img {
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+.art_name span {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+}
+.E_d_i_t {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0.3rem;
+  border-radius: 10px;
+  padding: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.1s ease;
+}
+.E_d_i_t:hover {
+  background: #eee;
+}
+.article:hover .E_d_i_t {
+  visibility: visible;
+  opacity: 1;
+}
+@media (max-width: 992.98px) {
+  .E_d_i_t {
+    visibility: visible;
+    opacity: 1;
+    background: #eee;
+  }
+}
+@media (max-width: 768.98px) {
+  .Jxy_2tvi {
+    gap: 5px;
+  }
+  .article {
+    flex: 0 0 40%;
+  }
+  .art_img {
+    max-height: 200px;
+  }
+}
+@media (max-width: 425.98px) {
+  .category {
+    margin: 0;
+  }
+  .cat_lvl_ {
+    padding: 0;
+  }
+  .article {
+    flex: 0 0 60%;
+  }
+}

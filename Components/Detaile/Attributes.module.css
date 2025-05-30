@@ -1,0 +1,43 @@
+.Cezp {
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+.Kxope {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow: hidden;
+}
+.Kxope p {
+  font-weight: 600;
+
+  margin-bottom: 0.5rem;
+  color: rgb(80, 80, 80);
+  font-size: 16px;
+}
+.Kxope li {
+  line-height: 2;
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+  width: 100%;
+}
+.name {
+  color: #81858b;
+  margin-left: 0.5rem;
+  font-size: 13px;
+}
+
+.desc {
+  font-size: 13px;
+}
+@media (max-width: 1023.98px) {
+  .Cezp {
+    padding-left: 1rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .Cezp {
+    display: none;
+  }
+}

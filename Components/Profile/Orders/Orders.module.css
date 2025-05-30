@@ -1,0 +1,115 @@
+.dSezpb6 {
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.MfdNsa {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+.MfdNsa svg {
+  width: 32px;
+  height: 32px;
+  color: #3499ff;
+}
+.QzEmd {
+  font-size: 18px;
+  margin-right: 1rem;
+}
+
+.RxaPlo {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.order {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.or_header {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid #ddd;
+}
+.or_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+.content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.content > * {
+  color: #a1a3a8;
+}
+.or_date {
+  font-size: 14px;
+}
+.or_info {
+  display: flex;
+  align-items: center;
+}
+.or_info span {
+  margin-right: 8px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.toman::after {
+  content: "\F142\00FE0E";
+  font-family: "Icon";
+  font-size: 20px;
+  margin-right: 3px;
+}
+.pictures {
+  margin: 0 1rem;
+}
+.images {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 16px;
+  padding: 1rem 0;
+}
+.layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.pHvtxu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.pic {
+  height: 200px;
+}
+.pHvtxu p {
+  font-size: 18px;
+}
