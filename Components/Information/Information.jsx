@@ -1,17 +1,13 @@
 import style from './Information.module.css'
-import { FiEdit } from 'react-icons/fi'
 import { useContext } from 'react';
 import { Authorization } from 'providers/AuthorizationProvider';
-import createModal from 'Components/Modal';
-import ChangePassword from './ChangePassword';
-import { Functions } from 'providers/FunctionsProvider';
 import EditModal from './EditModal';
 import { IoMdCloseCircle } from 'react-icons/io';
 import { FaCheckCircle } from 'react-icons/fa';
+import PasswordModal from "./PasswordModal";
 
 const Information = () => {
-    const { tokens, user } = useContext(Authorization)
-    const { SwalStyled } = useContext(Functions)
+    const {  user } = useContext(Authorization)
     return (
         <>
             <div className={style.UBtgvIR4}>
@@ -36,9 +32,7 @@ const Information = () => {
                         </div>
                     </div>
                     <div className={style.kLRx8Fh}>
-                        <div className={style.nbGr5K} onClick={() => createModal(<ChangePassword Swal={SwalStyled} token={tokens} mobile={user.mobile} />)}>
-                            <FiEdit />
-                        </div>
+                        <PasswordModal className={style.nbGr5K} />
                         <div className={style.GvrclT4}>
                             <div className={style.Rcinpte}>
                                 <p>رمز عبور</p>

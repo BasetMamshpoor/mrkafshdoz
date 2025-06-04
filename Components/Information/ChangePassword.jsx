@@ -94,7 +94,7 @@ const ChangePassword = ({ Swal, token, mobile, setIsOpen }) => {
                     <button disabled={!isMatch ? true : false} className={`${style.btn} ${!isMatch ? style.disableButton : ''}`}>بررسی</button>
                 </form>
                 <div className={style.forgot_link}>
-                    <Link href={{ pathname: '/auth/verify', query: { mobile, forword: '/auth/forgotpassword' } }}>فراموشی رمز یا ایجاد اولین رمز عبور</Link>
+                    <Link href={`/auth/verify?mobile=${mobile}&forword=/auth/forgotpassword`}>فراموشی رمز یا ایجاد اولین رمز عبور</Link>
                 </div>
             </div>
         </>

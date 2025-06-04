@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {ModalBody} from "@heroui/react";
-import useGetRequest from "/hooks/useGetRequest"
 import {FaChevronRight} from "react-icons/fa6";
 import {PiSpeakerSimpleHigh, PiSpeakerSimpleSlash} from "react-icons/pi";
 import Like from "./Like";
+import useGetPrivatRequest from "hooks/useGetPrivatRequest";
 
 const formatTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60);
@@ -14,7 +14,7 @@ const formatTime = (timeInSeconds) => {
 const StoryContent = ({onClose, id, isOpen, Stories, index}) => {
     const [storyId, setStoryId] = useState(id);
     const [indexStory, setIndexStory] = useState(index);
-    const [data = {}, , , , , isloading] = useGetRequest(`/stories/${storyId}`);
+    const [data = {}] = useGetPrivatRequest(`/stories/${storyId}`);
     const [isMuted, setIsMuted] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -124,7 +124,7 @@ const StoryContent = ({onClose, id, isOpen, Stories, index}) => {
                             </div>
                         </div>
                         <div className='absolute z-10 flex flex-col gap-4 items-center bottom-10 left-0 p-4'>
-                            {!isloading && <Like id={id} is_like={data.is_like} likes_count={data.likes_count}/>}
+                            {!!data && <Like id={id} is_like={data.is_like} likes_count={data.likes_count}/>}
                         </div>
                     </div>
                 </div>
