@@ -101,7 +101,7 @@ const EditForm = ({ id, SwalStyled, setIsOpen, reload }) => {
                     if (typeof reload === 'function') reload(Math.random())
                 })
                 .catch(err => {
-                    SwalStyled.fire(".ویرایش نشد", ".مشکلی در فرایند ویرایش محصول پیش آمده", "error")
+                    SwalStyled.fire(".ثبت نشد", err.response?.data.message, "error")
                     setLoading(false)
                     setProgress(0)
                 })
