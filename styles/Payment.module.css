@@ -159,7 +159,6 @@
   }
   .row {
     grid-template-columns: repeat(1, minmax(0, 1fr));
-    background: #e0e0e2;
   }
   .column_lg,
   .column_sm {

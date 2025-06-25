@@ -12,11 +12,6 @@ import Link from 'next/link';
 const Baner = ({product, color, size, selectedColorInfo}) => {
     const {id, name, brand, offPercent, offPrice, price, image} = product
     const idp = id + color.colorCode + size.size;
-    console.log({
-        ...product,
-        color: selectedColorInfo,
-        idp
-    })
     const {state, dispatch} = useContext(CartContext)
     return (
         <>

@@ -41,7 +41,6 @@ const Filters = ({ setIsOpen }) => {
     }
 
     const changeUrl = (name, value) => {
-        console.log(router.query);
         let str = null;
         !!Array.isArray(value) ? value.forEach((f, i) => {
             if (i > 0) {

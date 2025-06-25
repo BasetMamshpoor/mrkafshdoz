@@ -153,7 +153,7 @@ const Order = ({ data, setSingleOrder }) => {
                                             <div><FiUser /></div>{order.address.name}
                                         </li>
                                         <li className={style.receiver_cellphone}>
-                                            <div><FiPhone /></div> <a href="tel:09990990909">{order.address.cellphone}</a>
+                                            <div><FiPhone /></div> <a href={`tel:${order.address.cellphone}`}>{order.address.cellphone}</a>
                                         </li>
                                     </ul>
                                     <div className={style.address_sec}>

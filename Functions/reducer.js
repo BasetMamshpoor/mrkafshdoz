@@ -17,13 +17,13 @@ const reducer = (state, action) => {
             });
             localStorage.setItem('cart', JSON.stringify({
                 ...state,
-                items: [...clearUnexist],
+                items: clearUnexist,
                 ...sumItems(action.payload)
             }))
             return {
                 ...state,
                 items: action.payload,
-                ...sumItems(action.payload)
+                ...sumItems(clearUnexist)
             }
         case "ADD_ITEM":
             if (!state.items.find(item => item.idp === action.payload.idp)) {
@@ -57,7 +57,7 @@ const reducer = (state, action) => {
         case "INCREASE":
             const Index = state.items.findIndex(i => i.idp === action.payload.idp)
             let num = state.items[Index];
-            if (!(num.size.stock > num.quantity)) {
+            if (!(num.color.size.stock > num.quantity)) {
                 return {
                     ...state,
                     ...sumItems(state.items)

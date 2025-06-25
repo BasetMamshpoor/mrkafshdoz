@@ -1,15 +1,13 @@
 import {BsArrowLeft} from 'react-icons/bs'
-import {useState} from 'react';
 import {Pagination} from "@heroui/react";
 import {useRouter} from 'next/router';
 import useGetPrivatRequest from 'hooks/useGetPrivatRequest'
 import addComma from 'Functions/addComma';
 
-const Orders = ({status, setOnOrder}) => {
+const Orders = ({status, setOnOrder, currentPage, setCurrentPage}) => {
     const {replace, query} = useRouter();
     const {code} = query
 
-    const [currentPage, setCurrentPage] = useState(1)
     const [orders, setOrders, reload, pagination, , isLoading] = useGetPrivatRequest(`/admin/orders?items_perpage=10${status ? `&status_id=${status}` : ""}${code ? `&code=${code}` : ``}`, currentPage)
 
     const detailOrder = (order) => {

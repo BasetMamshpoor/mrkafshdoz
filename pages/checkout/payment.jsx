@@ -4,14 +4,11 @@ import { Functions } from "providers/FunctionsProvider";
 import { useContext, useEffect, useState } from "react";
 import style from 'styles/Payment.module.css'
 import { FaArrowRight } from "react-icons/fa";
-import addComma from "Functions/addComma";
-import { e2p } from "Functions/ConvertNumbers";
 import Address from "Components/Checkout/Payment/Address";
 import Discount from "Components/Checkout/Payment/Discount";
 import Products from "Components/Checkout/Payment/Products";
 import useGetPrivatRequest from 'hooks/useGetPrivatRequest'
 import { useRouter } from "next/router";
-import axios from "axios";
 import useAxios from "hooks/useAxios";
 
 const Payment = () => {
@@ -21,7 +18,7 @@ const Payment = () => {
     const { user, tokens } = useContext(Authorization)
     const { SwalStyled } = useContext(Functions)
     const [address, setAddress, reload] = useGetPrivatRequest('/profile/addresses')
-    const [price, setPrice] = useState()
+    // const [price, setPrice] = useState()
 
     useEffect(() => {
         if (address && !address.length)
@@ -35,14 +32,14 @@ const Payment = () => {
             })
     }, [address])
 
-    useEffect(() => {
-        const get = async () => {
-            await AxiosPrivate.get('/shipping-cost')
-                .then(res => setPrice(res.data))
-                .catch(err => alert(err.response?.data.message))
-        }
-        get()
-    }, [])
+    // useEffect(() => {
+    //     const get = async () => {
+    //         await AxiosPrivate.get('/shipping-cost')
+    //             .then(res => setPrice(res.data))
+    //             .catch(err => alert(err.response?.data.message))
+    //     }
+    //     get()
+    // }, [])
 
     const handelSubmit = async (e) => {
         e.preventDefault();
@@ -96,31 +93,41 @@ const Payment = () => {
                                 <div className={style.jMszopl_9Y_1}>
                                     <div className={style.KvxUs_LlI}>
                                         <div className={style.lBsNaA_J}>
-                                            <p>قیمت کالاها ({e2p(state.itemsCounter)}) : </p>
-                                            <span className={style.sWsRfAqS}>{addComma(state.total.toString())}</span>
+                                            <p>قیمت کالاها ({state.itemsCounter}) : </p>
+                                            <span className={style.sWsRfAqS}>{state.total.toLocaleString()}</span>
                                         </div>
                                         <div className={style.lBsNaA_J}>
                                             <p>هزینه ارسال : </p>
-                                            <span className={`${style.sWsRfAqS2} hasToman`}>{price && addComma(price.cost.toString())}</span>
+                                            {/*<span className={`${style.sWsRfAqS2} hasToman`}>{price && addComma(price.cost.toString())}</span>*/}
+                                            <span className={`${style.sWsRfAqS2}`}>پس کرایه</span>
+                                        </div>
+                                        <div className={style.lBsNaA_J}>
+                                            <p className="text-warning-500">ارسال از طریق تیپاکس انجام می شود و هزینه ارسال هنگام تحویل محصول پرداخت می شود</p>
                                         </div>
                                         <div className={`${style.lBsNaA_J} ${style.All_oFF_orDer}`}>
                                             <p>سود شما از خرید : </p>
                                             <span className={style.sWsRfAqS}>
-                                                <span className="ms-1">({state.total !== state.total_after_off && e2p(Math.ceil(100 - (state.total_after_off / state.total * 100))) + "%"})</span>
-                                                {addComma((state.total - state.total_after_off).toString())}
+                                                <span
+                                                    className="ms-1">({state.total !== state.total_after_off && (Math.ceil(100 - (state.total_after_off / state.total * 100))) + "%"})</span>
+                                                {(state.total - state.total_after_off)?.toLocaleString()}
                                             </span>
                                         </div>
                                         <div className={style.lBsNaA_J}>
                                             <p>قابل پرداخت : </p>
-                                            <span className={style.sWsRfAqS}>{addComma((state.total_after_off + parseInt(price ? price.cost : 0)).toString())}</span>
+                                            <span
+                                                className={style.sWsRfAqS}>{state.total_after_off?.toLocaleString()}</span>
                                         </div>
                                     </div>
-                                    <button onClick={handelSubmit} className={`${style.pq_HhFcy} ${style.large_screen}`}>ثبت سفارش</button>
+                                    <button onClick={handelSubmit}
+                                            className={`${style.pq_HhFcy} ${style.large_screen}`}>ثبت سفارش
+                                    </button>
                                     <div className={`${style.small_screen} ${style.nav_ORder}`}>
-                                        <button onClick={handelSubmit} className={`${style.pq_HhFcy} ${style.mobile_order}`}>ثبت سفارش</button>
+                                        <button onClick={handelSubmit}
+                                                className={`${style.pq_HhFcy} ${style.mobile_order}`}>ثبت سفارش
+                                        </button>
                                         <div className={style.left_nav}>
                                             <p>قابل پرداخت</p>
-                                            <span className={`${style.sWsRfAqS}`}>{addComma((state.total_after_off + parseInt(price ? price.cost : 0)).toString())}</span>
+                                            <span className={`${style.sWsRfAqS}`}>{state.total_after_off?.toLocaleString()}</span>
                                         </div>
                                     </div>
                                 </div>

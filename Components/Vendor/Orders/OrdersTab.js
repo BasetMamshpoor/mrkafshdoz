@@ -10,6 +10,7 @@ const OrdersTab = () => {
     const {order: OrderId, code} = query
 
     const [selected, setSelected] = useState('1')
+    const [currentPage, setCurrentPage] = useState(1)
     const [onOrder, setOnOrder] = useState(OrderId ? {id: OrderId} : undefined)
 
 
@@ -35,19 +36,24 @@ const OrdersTab = () => {
                             className='centerOfParent bg-white outline-none focus:outline-none border-0 absolute left-2 top-1/2 -translate-y-1/2'>
                             <ImSearch className="fill-gray-400"/></button>
                     </form>
-                    {!!code ? <Orders setOnOrder={setOnOrder}/> :
+                    {!!code ?
+                        <Orders setOnOrder={setOnOrder} setCurrentPage={setCurrentPage} currentPage={currentPage}/> :
                         <>
                             <Tabs
                                 selectedKey={selected}
-                                onSelectionChange={setSelected}
+                                onSelectionChange={e=>{
+                                    setSelected(e)
+                                    setCurrentPage(1)
+                                }}
                                 aria-label="Options" className="border-b pb-3">
-                                <Tab key="1" title="در انتظار پرداخت"/>
+                                {/*<Tab key="1" title="در انتظار پرداخت"/>*/}
                                 <Tab key="2" title="در حال اماده سازی"/>
                                 <Tab key="3" title="ارسال شده"/>
                                 <Tab key="4" title="تحویل داده شده"/>
                                 <Tab key="5" title="لغو شده"/>
                             </Tabs>
-                            <Orders setOnOrder={setOnOrder} status={selected}/>
+                            <Orders setOnOrder={setOnOrder} status={selected} setCurrentPage={setCurrentPage}
+                                    currentPage={currentPage}/>
                         </>
                     }
                 </div>}

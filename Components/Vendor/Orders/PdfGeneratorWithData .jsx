@@ -85,7 +85,7 @@ const MyPDFContent = ({ data }) => (
 
             <View style={styles.texts}>
                 <Text style={styles.text2}>فرستنده: آقای کقشدوز</Text>
-                <Text style={styles.text2}>گیرنده: {data.address.name} _ {data.address.number}</Text>
+                <Text style={styles.text2}>گیرنده: {data.address.name} _ {data.address.cellphone}</Text>
                 <Text style={{ ...styles.text, marginBottom: 10 }}>آدرس گیرنده: {data.address.province} - {data.address.city} - {data.address.address}</Text>
                 <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', }}>
                     {/* <View>
