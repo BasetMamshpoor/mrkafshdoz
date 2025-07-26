@@ -9,7 +9,7 @@ const OrdersTab = () => {
     const {query, replace} = useRouter();
     const {order: OrderId, code} = query
 
-    const [selected, setSelected] = useState('1')
+    const [selected, setSelected] = useState('2')
     const [currentPage, setCurrentPage] = useState(1)
     const [onOrder, setOnOrder] = useState(OrderId ? {id: OrderId} : undefined)
 
