@@ -19,7 +19,7 @@ const useGetPrivateRequest = (url, page = 1, obj) => {
             const get = async () => {
                 await axios.get(url, {
                     params: {...obj, page},
-                    headers: {Authorization: `${tokens.token_type} ${tokens.access_token}`}
+                    headers: {Authorization: `${tokens?.token_type} ${tokens?.access_token}`}
                 })
                     .then(res => {
                         const {data, ...pagination} = res.data

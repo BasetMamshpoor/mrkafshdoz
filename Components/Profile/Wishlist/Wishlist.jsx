@@ -19,7 +19,7 @@ const Wishlist = () => {
     const { tokens } = useContext(Authorization)
     const { SwalStyled } = useContext(Functions)
     const headers = {
-        Authorization: `${tokens.token_type} ${tokens.access_token}`
+        Authorization: `${tokens?.token_type} ${tokens?.access_token}`
     }
     const handleDelete = (id) =>
         SwalStyled.fire({

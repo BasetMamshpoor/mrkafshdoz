@@ -93,7 +93,7 @@ export default function NewStory({reload}) {
             await axios.post("/admin/stories", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    Authorization: `${token.token_type} ${token.access_token}`
+                    Authorization: `${token?.token_type} ${token?.access_token}`
                 },
             }).then(() => {
                 SwalStyled.fire('.ثبت شد', '.اسلاید جدیدی با موفقیت ثبت شد', 'success')

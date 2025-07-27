@@ -17,7 +17,7 @@ const ChangePassword = ({ Swal, token, mobile, setIsOpen }) => {
     const handlePassword = async (e) => {
         e.preventDefault()
         await axios.post('/user/change-password', state, {
-            headers: { Authorization: `${token.token_type} ${token.access_token}` }
+            headers: { Authorization: `${token?.token_type} ${token?.access_token}` }
         })
             .then(res => {
                 Swal.fire('انجام شد', res.data.message, 'success')

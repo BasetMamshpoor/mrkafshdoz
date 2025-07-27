@@ -16,7 +16,7 @@ const NewCategory = ({ state, categoryLevel, reload, level, setIsOpen, SwalStyle
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0)
     const token = JSON.parse(Cookies.get('token'))
-    const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token.token_type} ${token.access_token}` }
+    const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token?.token_type} ${token?.access_token}` }
     const imagePlaceholder = '/Images/placeholder-1.png'
 
     const handleChange = (name, value) => {

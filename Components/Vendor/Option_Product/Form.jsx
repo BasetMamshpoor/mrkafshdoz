@@ -59,7 +59,7 @@ const Form = () => {
             setLoading(true)
             const headers = {
                 'Content-Type': 'multipart/form-data',
-                Authorization: `${tokens.token_type} ${tokens.access_token}`
+                Authorization: `${tokens?.token_type} ${tokens?.access_token}`
             }
             await axios.post('/admin/products', product, {
                 headers,

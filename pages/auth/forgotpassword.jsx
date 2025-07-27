@@ -26,7 +26,7 @@ const ForgotPassword = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         await axios.post('/user/change-password', state, {
-            headers: { Authorization: `${tokens.token_type} ${tokens.access_token}` }
+            headers: { Authorization: `${tokens?.token_type} ${tokens?.access_token}` }
         })
             .then(res => {
                 SwalStyled.fire('انجام شد', res.data.message, 'success')

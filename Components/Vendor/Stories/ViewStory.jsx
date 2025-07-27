@@ -32,7 +32,7 @@ export default function ViewStory({id, cover, title, video, reload}) {
                     setLoading(true);
                     await axios.delete(`/admin/stories/${id}`, {
                         headers: {
-                            Authorization: `${token.token_type} ${token.access_token}`
+                            Authorization: `${token?.token_type} ${token?.access_token}`
                         }
                     });
                     SwalStyled.fire("حذف شد", "استوری با موفقیت حذف شد.", "success");

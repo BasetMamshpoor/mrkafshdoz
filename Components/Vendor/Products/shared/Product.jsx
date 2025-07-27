@@ -15,7 +15,7 @@ const Product = ({ id, name, price, offPercent, offPrice, image, is_available, s
     const { SwalStyled } = useContext(Functions)
 
     const token = JSON.parse(Cookies.get('token'))
-    const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token.token_type} ${token.access_token}` }
+    const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${token?.token_type} ${token?.access_token}` }
 
 
     const handleDelete = async () => {

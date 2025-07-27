@@ -15,7 +15,7 @@ const Like = ({ is_like, likes_count, id }) => {
                 {},
                 {
                     headers: {
-                        Authorization: `${token.token_type} ${token.access_token}`,
+                        Authorization: `${token?.token_type} ${token?.access_token}`,
                     },
                 }
             );

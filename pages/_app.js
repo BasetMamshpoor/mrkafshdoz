@@ -20,7 +20,8 @@ export default function App({ Component, pageProps }) {
   const isMatch = useMediaQuery('(max-width: 1023.98px)')
   const router = useRouter()
   const routesWithout_nav_foot = ['/auth/login', '/auth/password', '/auth/verify', '/auth/forgotpassword', '/checkout/payment']
-  const withoutNavbar_Footer = routesWithout_nav_foot.find(r => r === router.pathname) ? true : false
+  const withoutNavbar_Footer = routesWithout_nav_foot.find(r => r === router.pathname) ? true : false;
+
   return (
     <HeroUIProvider navigate={router.push}>
       <FunctionsProvider>

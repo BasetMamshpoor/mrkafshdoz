@@ -14,7 +14,7 @@ const Brands = () => {
     const [brands, setBrands, reload, paginations] = useGetPrivatRequest(`/admin/brands`, currentpage)
     const { SwalStyled } = useContext(Functions)
     const token = JSON.parse(Cookies.get('token'))
-    const headers = { Authorization: `${token.token_type} ${token.access_token}` }
+    const headers = { Authorization: `${token?.token_type} ${token?.access_token}` }
 
     const handleDelete = (id) => {
         SwalStyled.fire({

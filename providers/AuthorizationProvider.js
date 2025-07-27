@@ -15,7 +15,7 @@ const AuthorizationProvider = ({ children }) => {
 
     const getUserInformation = async (token) => {
         const data = await axios.get('/profile/information',
-            { headers: { Authorization: `${token.token_type} ${token.access_token}` } })
+            { headers: { Authorization: `${token?.token_type} ${token?.access_token}` } })
             .then(({ data }) => {
                 setUser(data.data)
                 return data.data

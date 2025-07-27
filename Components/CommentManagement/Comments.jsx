@@ -27,7 +27,7 @@ const Comments = () => {
     const [comments, setComments, reload, pagination] = useGetPrivatRequest(`/${Route}/comments?approved=${tab}`, currentPage)
 
     const headers = {
-        Authorization: `${tokens.token_type} ${tokens.access_token}`
+        Authorization: `${tokens?.token_type} ${tokens?.access_token}`
     }
 
     const handleChangeStatue = async (id, approved) => {

@@ -79,7 +79,7 @@ const EditForm = ({ id, SwalStyled, setIsOpen, reload }) => {
             setTouch({ name: true, brand_id: true, category_id: true, image: true, images: true, price: true, offPrice: true, color: true, colorCode: true, sizes: true, attributes: true, discountTime: true })
         } else {
             setLoading(true)
-            const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${tokens.token_type} ${tokens.access_token}` }
+            const headers = { 'Content-Type': 'multipart/form-data', Authorization: `${tokens?.token_type} ${tokens?.access_token}` }
             await axios.post(`/admin/products/${state.product.id}`, product, {
                 headers,
                 onUploadProgress: (progressEvent) => {
