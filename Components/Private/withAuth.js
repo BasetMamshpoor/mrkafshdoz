@@ -15,7 +15,7 @@ const withAuth = (WrappedComponent) => {
             if (!tokens) router.push('/auth/login');
         }, []);
 
-        if (user?.is_admin)
+        if (user.is_admin)
             return (role === 'admin') ? <WrappedComponent {...props} /> : <Page404 />
         else
             return (role === 'profile') ? <WrappedComponent {...props} /> : <Page404 />

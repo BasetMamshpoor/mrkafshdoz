@@ -19,7 +19,7 @@ const OrdersTab = () => {
         const value = event.target[0].value
         const newQuery = {...query, code: value};
 
-        replace({pathname: '/admin/[vendor]', query: newQuery});
+        replace({pathname: '/admin/orders', query: newQuery});
     }
 
     return (

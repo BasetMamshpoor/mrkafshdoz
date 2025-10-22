@@ -22,7 +22,7 @@ const Input = ({ value, isNumber = false, result, refrence, ...props }) => {
 
     return (
         <>
-            <input ref={refrence && refrence} onBlur={handleBlur} onChange={handleChange} value={val} {...props} />
+            <input ref={refrence && refrence}  onBlur={handleBlur} onChange={handleChange} value={val} {...props} />
         </>
     );
 };

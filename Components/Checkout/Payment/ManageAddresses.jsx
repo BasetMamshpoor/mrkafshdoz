@@ -4,8 +4,12 @@ import { BsSignpost2 } from "react-icons/bs";
 import { BiMobileAlt } from "react-icons/bi";
 import { e2p } from 'Functions/ConvertNumbers';
 import createModal from 'Components/Modal';
-import AddAddress from 'Components/Profile/Address/AddAddress';
 import { ImRadioChecked, ImRadioUnchecked } from "react-icons/im";
+import dynamic from "next/dynamic";
+const AddAddress = dynamic(() => import("Components/Profile/Address/AddAddress"), {
+    ssr: false, // ⛔ غیرفعال کردن SSR
+    loading: () => <p className="text-center mt-10">در حال بارگذاری نقشه...</p>,
+});
 
 const ManageAddresses = ({ addresses, dispatch, index, setIndex, reload, SwalStyled, user, tokens, setIsOpen }) => {
     return (

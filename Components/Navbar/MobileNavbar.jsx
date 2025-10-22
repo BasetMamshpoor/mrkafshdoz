@@ -44,9 +44,9 @@ const MobileNavbar = () => {
         { route: `category-${categories[0].slug}-apparel`, iconOutline: <MdOutlineCategory />, iconeFill: <MdCategory />, value: 'دسته بندی' },
         { route: 'checkout/cart', iconOutline: <BsCart />, iconeFill: <BsCartFill />, value: 'سبد خرید' },
         {
-            route: !tokens ? 'auth/login' : user?.is_admin ? 'admin' : 'profile',
-            iconOutline: !tokens ? <BsPerson /> : user?.is_admin ? <RiAdminLine /> : <BsPerson />,
-            iconeFill: !tokens ? <BsPersonFill /> : user?.is_admin ? <RiAdminFill /> : <BsPersonFill />,
+            route: !tokens ? 'auth/login' : user.is_admin ? 'admin' : 'profile',
+            iconOutline: !tokens ? <BsPerson /> : user.is_admin ? <RiAdminLine /> : <BsPerson />,
+            iconeFill: !tokens ? <BsPersonFill /> : user.is_admin ? <RiAdminFill /> : <BsPersonFill />,
             value: !!tokens ? 'صفحه من' : 'ورود'
         },
     ]

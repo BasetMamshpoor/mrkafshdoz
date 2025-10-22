@@ -27,7 +27,7 @@ const SendOrder = ({ order_id, setOnOrder }) => {
     const OrderList = () => {
         setOnOrder()
         const { order, ...queries } = query
-        replace({ pathname: '/admin/[vendor]', query: queries });
+        replace({ pathname: '/admin/orders', query: queries });
     }
 
     const handleSubmit = async (e) => {

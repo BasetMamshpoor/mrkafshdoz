@@ -6,8 +6,6 @@ export default function (params) {
         errors.title = true
     } else if (!params.title.trim()) {
         errors.title = true
-    } else if (params.title.length > 20) {
-        errors.title = true
     } else {
         delete errors.title
     }
@@ -16,10 +14,6 @@ export default function (params) {
         errors.address = true
     } else if (!params.address.trim()) {
         errors.address = true
-    } else if (params.address.length < 6) {
-        errors.address = 'طول آدرس حداقل 5 حرف باید باشد.'
-    } else if (params.address.length > 400) {
-        errors.address = 'طول ادرس حداکثر 400 حرف میتواند باشد.'
     } else {
         delete errors.address
     }
@@ -39,17 +33,14 @@ export default function (params) {
     }
 
     // number
+        console.log(params)
     if (!params.number) {
-        errors.number = true
-    } else if (!params.number.trim()) {
         errors.number = true
     } else {
         delete errors.number
     }
     // postalcode
     if (!params.postalcode) {
-        errors.postalcode = true
-    } else if (!params.postalcode.trim()) {
         errors.postalcode = true
     } else {
         delete errors.postalcode

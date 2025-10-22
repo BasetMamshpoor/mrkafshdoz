@@ -13,16 +13,16 @@ import createModal from 'Components/Modal'
 import AddAddress from './AddAddress'
 import { Functions } from 'providers/FunctionsProvider'
 import { Authorization } from 'providers/AuthorizationProvider'
-import Image from 'next/image'
 import axios from 'axios'
-import { useRouter } from 'next/router'
+import dynamic from "next/dynamic";
+
+const NewAddress = dynamic(() => import('./NewAddress'),{ssr:false});
 
 const Address = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [addresses, setAddress, reload, pagination] = useGetPrivatRequest('/profile/addresses', currentPage)
     const { SwalStyled } = useContext(Functions)
     const { tokens, user } = useContext(Authorization)
-    const router = useRouter()
     const headers = { Authorization: `${tokens?.token_type} ${tokens?.access_token}` }
 
     const handleDelete = async (id) =>
@@ -55,7 +55,7 @@ const Address = () => {
                             </div>
                             <h5>آدرس ها</h5>
                         </div>
-                        <button className={style.OTxe3_M} onClick={() => createModal(<AddAddress router={router} reload={reload} SwalStyled={SwalStyled} user={{ ...user, ...tokens }} />)}>ثبت آدرس جدید</button>
+                        <NewAddress first reload={reload}/>
                     </div>
                     {!!pagination ? <>
                         <div className={style.Ubx7_O3}>
@@ -66,9 +66,7 @@ const Address = () => {
                                         <div className={style.olCqz8_PP}>
                                             <p className={style.ObcjZo_e3}>{a.title}</p>
                                             <div className={style.cPx_iiRxQ67}>
-                                                <div onClick={() => createModal(<AddAddress reload={reload} edit={a} SwalStyled={SwalStyled} user={{ ...user, ...tokens }} />)}>
-                                                    <FiEdit3 />
-                                                </div>
+                                                <NewAddress reload={reload} edit={a}/>
                                                 <div onClick={() => handleDelete(a.id)}>
                                                     <BsTrash />
                                                 </div>
@@ -99,11 +97,6 @@ const Address = () => {
                                                             </div> {e2p(a.postalcode)}
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className={style.simple_map_img}>
-                                                    <img src={!!imageUrl ? imageUrl : '/Images/placeholder-1.png'}
-                                                        placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100}
-                                                        height={100} alt={a.address} />
                                                 </div>
                                             </div>
                                         </div>

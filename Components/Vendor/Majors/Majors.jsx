@@ -18,7 +18,7 @@ const Majors = ({setOnOrder, status}) => {
         setOnOrder(order)
         const newQuery = {...query, order: order.id};
 
-        replace({pathname: '/admin/[vendor]', query: newQuery});
+        replace({pathname: '/admin/major', query: newQuery});
     }
     return (
         <>

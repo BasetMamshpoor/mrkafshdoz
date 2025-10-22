@@ -21,7 +21,7 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen, router }
         setAddress({
             ...searchProvinces(data, Provinces, newCities),
             latitude: data.latitude, longitude: data.longitude,
-            address: data.formatted_address.slice(data.formatted_address.indexOf('،') + 1),
+            address: data.formatted_address?.slice(data.formatted_address.indexOf('،') + 1),
             title: !!edit ? edit.title : '', postalcode: !!edit ? edit.postalcode : '',
             name: !!edit ? edit.name : '', cellphone: !!edit ? edit.cellphone : '',
         })
@@ -108,7 +108,7 @@ const AddressForm = ({ SwalStyled, data, user, edit, reload, setIsOpen, router }
                             <div className={style.field}>
                                 <label className={style.label}>نشانی پستی <span className={style.star}>*</span></label>
                                 <textarea className={`${style.textarea} ${(touch.address && !!errors.address) ? style.error : ''}`} dir='rtl' name="address" onChange={(e) => handleChange('address', e.target.value)}
-                                    defaultValue={data.formatted_address.slice(data.formatted_address.indexOf('،') + 1)}></textarea>
+                                    defaultValue={data.formatted_address?.slice(data.formatted_address.indexOf('،') + 1)}></textarea>
                                 {touch.address && errors.address && <span className={style.error_text}>{errors.address}</span>}
                             </div>
                         </div>

@@ -13,7 +13,7 @@ const Painting = () => {
         const { id, ...q } = query
         const newQuery = { ...q, tab: value };
 
-        replace({ pathname: '/admin/[vendor]', query: newQuery });
+        replace({ pathname: '/admin/product', query: newQuery });
     }
 
     return (

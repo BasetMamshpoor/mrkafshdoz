@@ -14,7 +14,7 @@ const Orders = ({status, setOnOrder, currentPage, setCurrentPage}) => {
         setOnOrder(order)
         const newQuery = {...query, order: order.id};
 
-        replace({pathname: '/admin/[vendor]', query: newQuery});
+        replace({pathname: '/admin/orders', query: newQuery});
     }
 
     return (
