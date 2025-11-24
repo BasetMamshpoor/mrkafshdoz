@@ -75,23 +75,25 @@ const styles = StyleSheet.create({
     },
 });
 
-const MyPDFContent = ({ data }) => (
+const MyPDFContent = ({data}) => (
     <Document>
         <Page size="A5" style={styles.page}>
             <Text style={styles.header}>امیدوارم بهترین تجربه خریدتون باشه</Text>
 
-            <Image style={styles.image} src="/Images/logo.png" />
+            <Image style={styles.image} src="/Images/logo.png"/>
             <Text style={styles.header}>mrkafshdoz.com</Text>
 
             <View style={styles.texts}>
                 <Text style={styles.text2}>فرستنده: آقای کقشدوز</Text>
                 <Text style={styles.text2}>گیرنده: {data.address.name} _ {data.address.cellphone}</Text>
-                <Text style={{ ...styles.text, marginBottom: 10 }}>آدرس گیرنده: {data.address.province} - {data.address.city} - {data.address.address}</Text>
-                <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', }}>
-                    {/* <View>
-                        <Image style={styles.qr} src={`https://quickchart.io/qr?text=mrkafshdoz.com/directions?latlng=${data.address.latitude},${data.address.longitude}`} />
+                <Text style={{...styles.text, marginBottom: 10}}>آدرس
+                    گیرنده: {data.address.province} - {data.address.city} - {data.address.address}</Text>
+                <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end',}}>
+                    <View>
+                        <Image style={styles.qr}
+                               src={`https://quickchart.io/qr?text=mrkafshdoz.com/directions?latlng=${data.address.latitude},${data.address.longitude}`}/>
                         <Text>جهت مسیریابی اسکن کنید</Text>
-                    </View> */}
+                    </View>
                     <View>
                         <Text style={styles.text}>
                             <Text>پلاک: </Text>{data.address.number}
@@ -119,10 +121,10 @@ const MyPDFContent = ({ data }) => (
     </Document>
 );
 
-const PdfOnButtonClick = ({ data }) => {
+const PdfOnButtonClick = ({data}) => {
 
     const generatePdf = async () => {
-        const blob = await pdf(<MyPDFContent data={data} />).toBlob();
+        const blob = await pdf(<MyPDFContent data={data}/>).toBlob();
         const url = URL.createObjectURL(blob);
 
         const printWindow = window.open(url);

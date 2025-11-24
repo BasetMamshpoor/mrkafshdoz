@@ -7,9 +7,9 @@ const Directions = () => {
     const { query, push } = useRouter()
     const { latlng } = query
     useEffect(() => {
-        if (!latlng) {
-            push('/')
-        }
+        // if (!latlng) {
+        //     push('/')
+        // }
     }, [latlng])
     const [lat, lng] = (latlng || '').split(',')
     return (

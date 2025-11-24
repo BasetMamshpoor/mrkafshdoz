@@ -33,7 +33,7 @@ const NavbarLinks = () => {
                                     <li><Link href="/products">اکسپلور</Link></li>
                                     <li><Link href={`/products?sort=bestselling`}>پرفروش&zwnj;ترین&zwnj;ها</Link></li>
                                     <li><Link href={`/products?discount=true`}>تخفیف&zwnj;ها و پیشنهادات</Link></li>
-                                    <li><Link href="/wholesale">عمده</Link></li>
+                                    {/*<li><Link href="/wholesale">عمده</Link></li>*/}
                                 </ul>
                             </div>
                         </div>

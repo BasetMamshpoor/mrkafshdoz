@@ -1,29 +1,26 @@
 import style from './Address.module.css'
-import { IoLocationSharp } from 'react-icons/io5'
-import { FiEdit3 } from 'react-icons/fi'
-import { BsTrash, BsPerson, BsTelephone } from 'react-icons/bs'
-import { GoMail } from 'react-icons/go'
-import { e2p } from 'Functions/ConvertNumbers'
+import {IoLocationSharp} from 'react-icons/io5'
+import {BsTrash, BsPerson, BsTelephone} from 'react-icons/bs'
+import {GoMail} from 'react-icons/go'
+import {e2p} from 'Functions/ConvertNumbers'
 import useGetPrivatRequest from 'hooks/useGetPrivatRequest'
 import Pagination from 'Components/Pagination/Pagination'
-import { useContext, useState } from 'react'
+import {useContext, useState} from 'react'
 import Loading from 'Components/Loading'
 import img from 'public/Images/address.svg'
-import createModal from 'Components/Modal'
-import AddAddress from './AddAddress'
-import { Functions } from 'providers/FunctionsProvider'
-import { Authorization } from 'providers/AuthorizationProvider'
+import {Functions} from 'providers/FunctionsProvider'
+import {Authorization} from 'providers/AuthorizationProvider'
 import axios from 'axios'
 import dynamic from "next/dynamic";
 
-const NewAddress = dynamic(() => import('./NewAddress'),{ssr:false});
+const NewAddress = dynamic(() => import('./NewAddress'), {ssr: false});
 
 const Address = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [addresses, setAddress, reload, pagination] = useGetPrivatRequest('/profile/addresses', currentPage)
-    const { SwalStyled } = useContext(Functions)
-    const { tokens, user } = useContext(Authorization)
-    const headers = { Authorization: `${tokens?.token_type} ${tokens?.access_token}` }
+    const {SwalStyled} = useContext(Functions)
+    const {tokens, user} = useContext(Authorization)
+    const headers = {Authorization: `${tokens?.token_type} ${tokens?.access_token}`}
 
     const handleDelete = async (id) =>
         SwalStyled.fire({
@@ -35,13 +32,13 @@ const Address = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
         }).then(async (result) => {
-            await axios.delete(`/address/${id}`, { headers })
+            await axios.delete(`/address/${id}`, {headers})
                 .then(res => {
                     SwalStyled.fire('.حذف شد', res.data.message, 'success')
                     reload(Math.random())
                 })
                 .catch(err => SwalStyled.fire('.حذف نشد', err.response.data.message, 'error'))
-        })
+        });
 
 
     return (
@@ -51,7 +48,7 @@ const Address = () => {
                     <div className={style.ExolP_3}>
                         <div className={style.KnbYc__9}>
                             <div className={style.KnbYc__10}>
-                                <IoLocationSharp />
+                                <IoLocationSharp/>
                             </div>
                             <h5>آدرس ها</h5>
                         </div>
@@ -60,62 +57,65 @@ const Address = () => {
                     {!!pagination ? <>
                         <div className={style.Ubx7_O3}>
                             {addresses.length > 0 ? addresses.map(a => {
-                                const imageUrl = `https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${a.latitude},${a.longitude}/${12}?mapSize=120,120&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY}`
-                                return (
-                                    <div className={style.oInGt07_} key={a.id}>
-                                        <div className={style.olCqz8_PP}>
-                                            <p className={style.ObcjZo_e3}>{a.title}</p>
-                                            <div className={style.cPx_iiRxQ67}>
-                                                <NewAddress reload={reload} edit={a}/>
-                                                <div onClick={() => handleDelete(a.id)}>
-                                                    <BsTrash />
+                                    return (
+                                        <div className={style.oInGt07_} key={a.id}>
+                                            <div className={style.olCqz8_PP}>
+                                                <p className={style.ObcjZo_e3}>{a.title}</p>
+                                                <div className={style.cPx_iiRxQ67}>
+                                                    <NewAddress reload={reload} edit={a}/>
+                                                    <div onClick={() => handleDelete(a.id)}>
+                                                        <BsTrash/>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className={style.VxpQl5H_0}>
-                                            <div className={style.NbvWzpo}>
-                                                <label>آدرس : </label>
-                                                <p className={style.loMnw}>{a.province} - {a.city} - {a.address}</p>
-                                            </div>
-                                            <div className={style.ybGtdrc}>
-                                                <div className={style.LGtcmnD_3}>
-                                                    <label>مشخصات گیرنده </label>
-                                                    <div className={style.FazWlNmh_i}>
-                                                        <div className={style.IbCh_1QzTM}>
-                                                            <div>
-                                                                <BsPerson />
-                                                            </div> {a.name}
-                                                        </div>
-                                                        <div className={style.IbCh_1QzTM}>
-                                                            <div>
-                                                                <BsTelephone />
-                                                            </div> {e2p(a.cellphone)}
-                                                        </div>
-                                                        <div className={style.IbCh_1QzTM}>
-                                                            <div>
-                                                                <GoMail />
-                                                            </div> {e2p(a.postalcode)}
+                                            <div className={style.VxpQl5H_0}>
+                                                <div className={style.NbvWzpo}>
+                                                    <label>آدرس : </label>
+                                                    <p className={style.loMnw}>{a.province} - {a.city} - {a.address}</p>
+                                                </div>
+                                                <div className={style.ybGtdrc}>
+                                                    <div className={style.LGtcmnD_3}>
+                                                        <label>مشخصات گیرنده </label>
+                                                        <div className={style.FazWlNmh_i}>
+                                                            <div className={style.IbCh_1QzTM}>
+                                                                <div>
+                                                                    <BsPerson/>
+                                                                </div>
+                                                                {a.name}
+                                                            </div>
+                                                            <div className={style.IbCh_1QzTM}>
+                                                                <div>
+                                                                    <BsTelephone/>
+                                                                </div>
+                                                                {e2p(a.cellphone)}
+                                                            </div>
+                                                            <div className={style.IbCh_1QzTM}>
+                                                                <div>
+                                                                    <GoMail/>
+                                                                </div>
+                                                                {e2p(a.postalcode)}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )
-                            }) :
+                                    )
+                                }) :
                                 <div className={style.empty}>
                                     <div className={style.pHvtxu}>
                                         <div className={style.pic}>
-                                            <img src={img.src} alt="" />
+                                            <img src={img.src} alt=""/>
                                         </div>
                                         <p>هنوز آدرس ثبت نکرده‌اید.</p>
                                     </div>
                                 </div>}
                         </div>
-                        <Pagination currentPage={currentPage} setCurrentPage={(e) => setCurrentPage(e)} dataLength={pagination.meta.total} boxShadow={false} />
-                    </> : <Loading />}
+                        <Pagination currentPage={currentPage} setCurrentPage={(e) => setCurrentPage(e)}
+                                    dataLength={pagination.meta.total} boxShadow={false}/>
+                    </> : <Loading/>}
                 </div>
-            </div >
+            </div>
         </>
     );
 };

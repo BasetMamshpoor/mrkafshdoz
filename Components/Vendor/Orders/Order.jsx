@@ -167,11 +167,6 @@ const Order = ({ data, setSingleOrder }) => {
                                             </li>
                                             <li className={style.postalcode}><span>کدپستی: </span>{(order.address.postalcode)}</li>
                                         </ul>
-                                        <a target='_blank' href={`https://nshn.ir/?lat=${order?.address.latitude}&lng=${order?.address.longitude}`} className='w-full h-fit md:max-w-full sm:max-w-[250px] max-w-[160px] overflow-hidden rounded-lg'>
-                                            <img src={!!imageUrl ? imageUrl : '/Images/placeholder-1.png'} className='rounded-lg w-full h-full object-contain'
-                                                placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={100}
-                                                height={100} alt='' />
-                                        </a>
                                     </div>
                                 </div>
                             </div>

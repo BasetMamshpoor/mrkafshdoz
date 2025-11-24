@@ -1,6 +1,6 @@
 import React from 'react';
-import { Pagination, Autoplay, Navigation } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import {Pagination, Autoplay, Navigation} from 'swiper/modules';
+import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation'
 import 'swiper/css/autoplay';
@@ -21,8 +21,8 @@ const Slider = ({data}) => {
                             speed={300}
                             spaceBetween={0}
                             slidesPerView={1}
-                            pagination={{ clickable: true }}
-                            autoplay={{ disableOnInteraction: false, delay: 6000, reverseDirection: true }}
+                            pagination={{clickable: true}}
+                            autoplay={{disableOnInteraction: false, delay: 6000, reverseDirection: true}}
                         >
                             {!!data && data.reverse().map(el => {
                                 return (
@@ -30,7 +30,8 @@ const Slider = ({data}) => {
                                         <div>
                                             <Link href={el.link}>
                                                 <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png'
-                                                    width={0} height={0} sizes='100vw' className='w-full h-full object-cover' src={el.src} alt="" />
+                                                       width={0} height={0} sizes='100vw'
+                                                       className='w-full h-full object-cover' src={el.src} alt=""/>
                                             </Link>
                                         </div>
                                     </SwiperSlide>

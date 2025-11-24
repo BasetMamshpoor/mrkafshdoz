@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@heroui/react": "2.7.8",
-    "@neshan-maps-platform/react-openlayers": "^2.0.16",
     "@react-pdf/renderer": "^4.1.6",
     "@types/react": "^19.0.1",
     "axios": "^1.7.9",

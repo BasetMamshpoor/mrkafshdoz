@@ -33,7 +33,6 @@ export default function (params) {
     }
 
     // number
-        console.log(params)
     if (!params.number) {
         errors.number = true
     } else {

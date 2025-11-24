@@ -19,12 +19,12 @@ const ProductsPage = () => {
         <>
             <section className={style.productList} dir="rtl">
                 <div className="container flex flex-col items-stretch gap-6 my-10">
-                    <div className=" flex items-center justify-end">
-                        <Link className='flex items-center justify-center gap-2 text-white bg-primary-600 rounded px-2 py-1' href='/wholesale'>
-                            <HiOutlineArrowTopRightOnSquare />
-                            فروش عمده
-                        </Link>
-                    </div>
+                    {/*<div className=" flex items-center justify-end">*/}
+                    {/*    <Link className='flex items-center justify-center gap-2 text-white bg-primary-600 rounded px-2 py-1' href='/wholesale'>*/}
+                    {/*        <HiOutlineArrowTopRightOnSquare />*/}
+                    {/*        فروش عمده*/}
+                    {/*    </Link>*/}
+                    {/*</div>*/}
                     <div className='row'>
                         <div className='col-lg-3'>
                             {!isMatch && <Filters />}

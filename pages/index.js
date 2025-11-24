@@ -18,7 +18,7 @@ export default function Home({initialData}) {
 
                 <Banner data={initialData?.banners}/>
 
-                <DailyOffer data={initialData?.discounts}/>
+                {!!initialData?.discounts.length && <DailyOffer data={initialData?.discounts}/>}
 
                 <MostSell
                     title="پرفروش ترین ها"
