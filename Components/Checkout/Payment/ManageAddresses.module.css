@@ -103,11 +103,6 @@
 }
 
 @media (max-width: 1023.98px) {
-    .main {
-        max-width: 100%;
-        position: absolute;
-        padding: 0 10px;
-    }
 
     .list {
         max-height: 80vh;
