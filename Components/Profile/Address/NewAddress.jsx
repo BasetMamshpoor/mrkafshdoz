@@ -209,7 +209,7 @@ const NewAddress = ({edit, first, reload}) => {
                 <Edit/>
             </Button>}
 
-            <Modal classNames={{backdrop: "z-[1001]", wrapper: "z-[1002]"}} scrollBehavior="inside" isOpen={isOpen}
+            <Modal classNames={{backdrop: "z-[1001]", wrapper: "z-[1002]"}} scrollBehavior="inside" isOpen={isOpen} placment="center"
                    onOpenChange={onOpenChange} size="5xl">
                 <ModalContent>
                     {(onClose) => (
