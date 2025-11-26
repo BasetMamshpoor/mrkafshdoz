@@ -70,7 +70,7 @@ const NewAddress = ({edit, first, reload}) => {
                 .then(res => res.json())
                 .then(data => {
                     if (data?.address) {
-                        setAddress({address: data.display_name, ...data.address});
+                        setAddress({address: data.display_name});
                     } else {
                         setAddress({});
                     }
@@ -160,6 +160,11 @@ const NewAddress = ({edit, first, reload}) => {
                 cellphone: true
             })
         } else {
+            console.log({
+                ...address,
+                latitude: position.lat,
+                longitude: position.lng
+            })
             if (!!edit) {
                 await axios.put(`/address/${edit.id}`, {
                     ...address,
@@ -373,7 +378,6 @@ const NewAddress = ({edit, first, reload}) => {
                                                         className={style.star}>*</span></label>
                                                     <Inputt value={address?.name} type='text' name='name'
                                                             result={handleChange}
-                                                            defaultValue={user?.name}
                                                             className={`${style.input} ${(touch.name && !!errors.name) ? style.error : ''}`}/>
                                                 </div>
                                                 <div className={style.field}>
@@ -381,7 +385,6 @@ const NewAddress = ({edit, first, reload}) => {
                                                         className={style.star}>*</span></label>
                                                     <Inputt value={address?.cellphone} name='cellphone'
                                                             result={handleChange}
-                                                            defaultValue={user?.mobile}
                                                             className={`${style.input} ${(touch.cellphone && !!errors.cellphone) ? style.error : ''}`}
                                                             placeholder='مثل: ۰۹۱۲۳۴۵۶۷۸۹'/>
                                                 </div>

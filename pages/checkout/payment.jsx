@@ -1,22 +1,22 @@
-import { Authorization } from "providers/AuthorizationProvider";
-import { CartContext } from "providers/CartContextProvider";
-import { Functions } from "providers/FunctionsProvider";
-import { useContext, useEffect, useState } from "react";
+import {Authorization} from "providers/AuthorizationProvider";
+import {CartContext} from "providers/CartContextProvider";
+import {Functions} from "providers/FunctionsProvider";
+import {useContext, useEffect, useState} from "react";
 import style from 'styles/Payment.module.css'
-import { FaArrowRight } from "react-icons/fa";
+import {FaArrowRight} from "react-icons/fa";
 import Address from "Components/Checkout/Payment/Address";
 import Discount from "Components/Checkout/Payment/Discount";
 import Products from "Components/Checkout/Payment/Products";
 import useGetPrivatRequest from 'hooks/useGetPrivatRequest'
-import { useRouter } from "next/router";
+import {useRouter} from "next/router";
 import useAxios from "hooks/useAxios";
 
 const Payment = () => {
-    const { AxiosPrivate } = useAxios()
+    const {AxiosPrivate} = useAxios()
     const router = useRouter()
-    const { state, dispatch } = useContext(CartContext)
-    const { user, tokens } = useContext(Authorization)
-    const { SwalStyled } = useContext(Functions)
+    const {state, dispatch} = useContext(CartContext)
+    const {user, tokens} = useContext(Authorization)
+    const {SwalStyled} = useContext(Functions)
     const [address, setAddress, reload] = useGetPrivatRequest('/profile/addresses')
     // const [price, setPrice] = useState()
 
@@ -59,7 +59,7 @@ const Payment = () => {
         } else await AxiosPrivate.post('/order', state)
             .then(res => {
                 window.location.replace(res.data.redirect_url)
-                dispatch({ type: "CHECKOUT" })
+                dispatch({type: "CHECKOUT"})
             })
             .catch(err => {
                 SwalStyled.fire({
@@ -75,17 +75,18 @@ const Payment = () => {
             {(address && !!address.length) && <div className={style.payment}>
                 <div className="container">
                     <nav className={style.navbar}>
-                        <div className={style.go_back} onClick={() => router.back()}><FaArrowRight /></div>
+                        <div className={style.go_back} onClick={() => router.back()}><FaArrowRight/></div>
                         <div className={style.nav_logo}>
-                            <div className={style.logo}><img src='../Images/logo.png' alt="" /></div>
+                            <div className={style.logo}><img src='../Images/logo.png' alt=""/></div>
                         </div>
                     </nav>
                     <div className={style.row}>
                         <div className={style.column_lg}>
-                            <Address address={address} dispatch={dispatch} reload={reload} SwalStyled={SwalStyled} user={user} tokens={tokens} />
-                            <Discount />
+                            <Address address={address} dispatch={dispatch} reload={reload} SwalStyled={SwalStyled}
+                                     user={user} tokens={tokens}/>
+                            <Discount/>
                             <div className={style.products}>
-                                <Products state={state.items} dispatch={dispatch} />
+                                <Products state={state.items} dispatch={dispatch}/>
                             </div>
                         </div>
                         <div className={style.column_sm}>
@@ -102,7 +103,8 @@ const Payment = () => {
                                             <span className={`${style.sWsRfAqS2}`}>پس کرایه</span>
                                         </div>
                                         <div className={style.lBsNaA_J}>
-                                            <p className="text-warning-500">ارسال از طریق تیپاکس انجام می شود و هزینه ارسال هنگام تحویل محصول پرداخت می شود</p>
+                                            <p className="text-warning-500">ارسال از طریق تیپاکس انجام می شود و هزینه
+                                                ارسال هنگام تحویل محصول پرداخت می شود</p>
                                         </div>
                                         <div className={`${style.lBsNaA_J} ${style.All_oFF_orDer}`}>
                                             <p>سود شما از خرید : </p>
@@ -127,7 +129,8 @@ const Payment = () => {
                                         </button>
                                         <div className={style.left_nav}>
                                             <p>قابل پرداخت</p>
-                                            <span className={`${style.sWsRfAqS}`}>{state.total_after_off?.toLocaleString()}</span>
+                                            <span
+                                                className={`${style.sWsRfAqS}`}>{state.total_after_off?.toLocaleString()}</span>
                                         </div>
                                     </div>
                                 </div>

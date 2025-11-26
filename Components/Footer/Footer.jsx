@@ -41,8 +41,7 @@ export default function FooterSection() {
                             className="w-full h-full object-contain"
                         />
                     </Link>
-                    <p className="flex items-center mb-2">آدرس:تهران خیام روبه‌رو مترو خیام کوچه شاهرخ شاهی انتهایی کوچه
-                        پلاک۲۰ </p>
+                    <p className="flex items-center mb-2">آدرس:تهران خیام روبروی مترو خیام کوچه شاهرخ شاهی بن بست سوم پلاک ۲۰</p>
                     <a href="tel:09372787893" className="text-gray-300 block">موبایل:
                         09372787893</a>
                     <p>ایمیل: info@mrkafshdoz.com</p>
