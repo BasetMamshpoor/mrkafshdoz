@@ -64,20 +64,20 @@ const NewAddress = ({edit, first, reload}) => {
         }
     }, [edit]);
 
-    useEffect(() => {
-        if (!edit && isOpen && position) {
-            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${position.lat}&lon=${position.lng}&accept-language=fa`)
-                .then(res => res.json())
-                .then(data => {
-                    if (data?.address) {
-                        setAddress({address: data.display_name});
-                    } else {
-                        setAddress({});
-                    }
-                })
-                .catch(() => setAddress({}));
-        }
-    }, [position, isOpen, edit]);
+    // useEffect(() => {
+    //     if (!edit && isOpen && position) {
+    //         fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${position.lat}&lon=${position.lng}&accept-language=fa`)
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 if (data?.address) {
+    //                     setAddress({address: data.display_name});
+    //                 } else {
+    //                     setAddress({});
+    //                 }
+    //             })
+    //             .catch(() => setAddress({}));
+    //     }
+    // }, [position, isOpen, edit]);
 
     const handleSearch = (e) => {
         e.preventDefault();
