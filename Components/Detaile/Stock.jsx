@@ -25,7 +25,14 @@ const Stock = ({product, size, setSize, color, setColor, selectedColorInfo}) => 
                             return (
                                 <div key={c.colorCode}
                                      className={`${style.Asewq} ${color.colorCode !== c.colorCode ? 'border-transparent' : 'border-main'} cursor-pointer border p-1 rounded-md gap-1`}
-                                     onClick={() => setColor(colors[index])}>
+                                     onClick={() => {
+                                         setColor(colors[index]);
+                                         const validSize = colors[index].sizes.find(size => size.stock > 0);
+                                         if (validSize) {
+                                             setSize(validSize);
+                                         } else
+                                             setSize({})
+                                     }}>
                                     <div className={style.EzP3_wzm2}>
                                         <span className='border' style={{background: c.colorCode}}></span>
                                     </div>
@@ -36,7 +43,8 @@ const Stock = ({product, size, setSize, color, setColor, selectedColorInfo}) => 
                     </div>
                 </div>
             </div>
-            {Object.keys(color).length && !!color.sizes.length ? <>
+            {Object.keys(color).length && !!color.sizes.length ?
+                <>
                     <div className={style.qOOp}>
                         <div className={style.sections}>
                             <label>اندازه:</label>
@@ -45,7 +53,7 @@ const Stock = ({product, size, setSize, color, setColor, selectedColorInfo}) => 
                             </div>
                         </div>
                     </div>
-                    <div className={style.WZZps} dir="ltr">
+                    {size.stock > 0 ? <div className={style.WZZps} dir="ltr">
                         <div className={style.hJkg}>
                             <div className={style.ogSeft}>{addComma(offPrice.toString())}</div>
                             {price !== offPrice && <div className={style.OFFqap}><span>%{e2p(offPercent)}</span>
@@ -131,11 +139,14 @@ const Stock = ({product, size, setSize, color, setColor, selectedColorInfo}) => 
                                         color: selectedColorInfo,
                                         idp
                                     }
-                                })} className={`bg-main text-white text-sm  rounded-lg py-2 mx-6 w-[200px]`}>افزودن به سبد
+                                })} className={`bg-main text-white text-sm  rounded-lg py-2 mx-6 w-[200px]`}>افزودن به
+                                    سبد
                                     خرید</button>
                             }
                         </div>
-                    </div>
+                    </div> : <div className={style.etmamMojody}>
+                        <b>ناموجود</b>
+                    </div>}
                 </> :
                 <div className={style.etmamMojody}>
                     <b>ناموجود</b>
