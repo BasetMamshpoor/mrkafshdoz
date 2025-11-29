@@ -21,7 +21,7 @@ const TwoBanners = ({data: banners}) => {
                                                 blurDataURL='/Images/placeholder-1.png' width={0} height={0}
                                                 sizes='100vw'
                                                 className='w-full h-full object-cover hover:scale-105 duration-300'
-                                                alt=''/>
+                                                alt='کفش'/>
                                         </Link>
                                     </div>)
                         })}

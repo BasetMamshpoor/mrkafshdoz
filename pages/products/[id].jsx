@@ -13,6 +13,7 @@ import Breadcrumb from 'Components/Breadcrumb';
 import Loading from 'Components/Loading';
 import OfferTime from 'Components/Detaile/OfferTime';
 import axios from 'axios';
+import Head from "next/head";
 
 const ProductDetaile = ({initialData}) => {
     const router = useRouter();
@@ -67,6 +68,10 @@ const ProductDetaile = ({initialData}) => {
 
     return (
         <>
+            <Head>
+                <title>{data.product.name}</title>
+                <meta name="description" content={data.product.text}/>
+            </Head>
             <main className={style.main} dir='ltr'>
                 <section dir='rtl'>
                     <div className="container">
@@ -121,7 +126,7 @@ const ProductDetaile = ({initialData}) => {
                             </div>
                             <div className="col-lg-5">
                                 {!!data.product.off_date_to && <OfferTime off_date_to={data.product.off_date_to}/>}
-                                <DetaileSlider color={color.color} Images={data.product.images}
+                                <DetaileSlider alt={data.product.name} color={color.color} Images={data.product.images}
                                                isBookmarked={data.product.isBookmarked}
                                                id={data.product.id}/>
                             </div>
@@ -143,6 +148,12 @@ const ProductDetaile = ({initialData}) => {
                         <div className="row">
 
                             <div className="col-lg-9 ps-3">
+                                <div className="prose prose-lg max-w-none">
+                                    <div
+                                        className="article-content text-justify leading-8 text-gray-700"
+                                        dangerouslySetInnerHTML={{__html: data.product.text}}
+                                    />
+                                </div>
                                 <Specifications data={data.product.attributes}/>
 
                                 <Comments id={id} rate={data.product.rate}/>

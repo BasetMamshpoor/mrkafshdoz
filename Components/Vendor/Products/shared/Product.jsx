@@ -10,7 +10,6 @@ import Cookies from 'js-cookie';
 import { Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/react";
 
 const Product = ({ id, name, price, offPercent, offPrice, image, is_available, setProducts, is_major }) => {
-    const dots = useRef()
 
     const { SwalStyled } = useContext(Functions)
 

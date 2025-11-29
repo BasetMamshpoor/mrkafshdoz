@@ -20,7 +20,7 @@ const Baner = ({product, color, size, selectedColorInfo}) => {
                     <div className={style.r4Alju}>
                         <div className={style.diSwk6}>
                             <img src={image}
-                                 alt=""/>
+                                 alt={name}/>
                         </div>
                         <div className={style.UyrpV7}>
                             <p>{name}</p>

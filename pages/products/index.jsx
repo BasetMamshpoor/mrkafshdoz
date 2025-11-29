@@ -10,6 +10,7 @@ import SortByMobile from 'Components/Categories/SortByMobile';
 import Link from 'next/link';
 import MobileFilters from 'Components/MobileFilter';
 import { HiOutlineArrowTopRightOnSquare } from 'react-icons/hi2';
+import Head from "next/head";
 
 const ProductsPage = () => {
     const router = useRouter()
@@ -17,6 +18,9 @@ const ProductsPage = () => {
     const isMatch = useMediaQuery('(max-width: 1023.98px)')
     return (
         <>
+            <Head>
+                <title>اکسپلور کفشدوز</title>
+            </Head>
             <section className={style.productList} dir="rtl">
                 <div className="container flex flex-col items-stretch gap-6 my-10">
                     {/*<div className=" flex items-center justify-end">*/}

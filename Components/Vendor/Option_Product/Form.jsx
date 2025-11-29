@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Input from '../../Input';
 import style from './Form.module.css'
 import AttributesList from './Attributes/AttributesList'
@@ -12,12 +12,17 @@ import UploadImage from './UploadImage';
 import {ImBoxAdd, ImCheckmark} from 'react-icons/im'
 import SelectCategories from './SelectCategories';
 import Brands from './Brands';
-import {useRouter} from 'next/router';
 import {Functions} from 'providers/FunctionsProvider';
 import {Authorization} from 'providers/AuthorizationProvider';
+import dynamic from "next/dynamic";
+import {Textarea} from "@heroui/react";
+
+const ReactQuill = dynamic(() => import("react-quill"), {
+    ssr: false,
+    loading: () => <div className="h-64 bg-gray-100 rounded-xl animate-pulse"></div>
+});
 
 const Form = () => {
-    const {push} = useRouter()
 
     const [product, setProduct] = useState({category_id: null, colors: [], attributes: [], images: []})
 
@@ -104,6 +109,20 @@ const Form = () => {
             }
         }
     }
+    const quillModules = React.useMemo(() => ({
+        toolbar: [
+            [{header: [1, 2, 3, false]}],
+            [{align: []}],
+            ["bold", "italic", "underline", "strike"],
+            [{list: "ordered"}, {list: "bullet"}],
+            [{indent: "-1"}, {indent: "+1"}],
+            [{color: []}, {background: []}],
+            ["blockquote", "code-block"],
+            ["link", "image"],
+            ["clean"],
+        ],
+    }), []);
+
 
     return (
         <>
@@ -159,6 +178,16 @@ const Form = () => {
                                     <span className={style.errors_input_specif}>{errors.attributes}</span>}
                             </div>
                         </div>
+                        <Textarea
+                            label="توضیحات"
+                            variant="bordered"
+                            className="mb-6"
+                            isRequired
+                            errorMessage=" "
+                            labelPlacement="outside"
+                            value={product.text}
+                            onValueChange={(value) => setProduct(e => ({...e, text: value}))}
+                        />
                         <div className={style.save_pro_qq}>
                             <button
                                 className={`${style.onRc_12ar} ${loading ? style.activeProgress : ''} ${progress === 100 ? style.Uploaded : ''}`}

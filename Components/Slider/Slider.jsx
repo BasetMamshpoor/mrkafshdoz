@@ -31,7 +31,7 @@ const Slider = ({data}) => {
                                             <Link href={el.link}>
                                                 <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png'
                                                        width={0} height={0} sizes='100vw'
-                                                       className='w-full h-full object-cover' src={el.src} alt=""/>
+                                                       className='w-full h-full object-cover' src={el.src} alt="کفش"/>
                                             </Link>
                                         </div>
                                     </SwiperSlide>

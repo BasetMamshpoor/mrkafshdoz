@@ -16,7 +16,7 @@ const Product = ({ id, name, price, rate, offPercent, offPrice, image, off_date_
                     </div>
                     <div className={style.info}>
                         <div className={style.descP}>
-                            <h3>{name}</h3>
+                            <h5>{name}</h5>
                         </div>
                         {rate > 0 && <div className={style.rate}>
                             <span>{e2p(rate)}</span>

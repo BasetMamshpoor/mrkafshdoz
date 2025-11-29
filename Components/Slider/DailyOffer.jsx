@@ -104,11 +104,11 @@ const DailyOffer = ({data}) => {
                                                     <div className="wsapJ">
                                                         <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png'
                                                             width={0}
-                                                            height={0} sizes='100vw' src={el.image} alt="" />
+                                                            height={0} sizes='100vw' src={el.image} alt={el.name} />
                                                         <span>%{e2p(el.offPercent)}</span>
                                                     </div>
                                                     <div className="oHbsI">
-                                                        <div className='line-clamp-2 text-right'>{el.name}</div>
+                                                        <h4 className='line-clamp-2 text-right'>{el.name}</h4>
                                                         <p>{addComma(el.offPrice)}</p>
                                                         <span className='cnsie'>{addComma(el.price)}</span>
                                                         {!!el.offPrice && (timeDiscount < 86400) && <>

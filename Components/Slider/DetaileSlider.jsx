@@ -21,7 +21,7 @@ import axios from "axios";
 import { Authorization } from "providers/AuthorizationProvider";
 import { Functions } from "providers/FunctionsProvider";
 
-const DetaileSlider = ({ Images, isBookmarked, id, color }) => {
+const DetaileSlider = ({ Images, isBookmarked,alt, id, color }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const swiperRef = useRef(null);
     const [like, setLike] = useState(isBookmarked)
@@ -89,7 +89,7 @@ const DetaileSlider = ({ Images, isBookmarked, id, color }) => {
                     {Images.map(s => {
                         return (
                             <SwiperSlide className={style.swiper_slide} key={s.id}>
-                                <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={0} height={0} sizes='100vw' className='w-full h-full object-cover' src={s.src} alt="" />
+                                <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={0} height={0} sizes='100vw' className='w-full h-full object-cover' src={s.src} alt={alt} />
                             </SwiperSlide>
                         )
                     })}
@@ -108,7 +108,7 @@ const DetaileSlider = ({ Images, isBookmarked, id, color }) => {
                     {Images.map((s, i) => {
                         return (
                             <SwiperSlide className={style.swiper_slide} key={i}>
-                                <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={0} height={0} sizes='100vw' className='w-full h-full object-cover' src={s.src} alt="" />
+                                <Image placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={0} height={0} sizes='100vw' className='w-full h-full object-cover' src={s.src} alt={alt} />
                             </SwiperSlide>
                         )
                     })}

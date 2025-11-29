@@ -19,7 +19,7 @@ const MostSell = ({url, title, data}) => {
                 <div className="w-full mx-auto flex flex-col gap-4">
                     <div className="flex items-center justify-between px-4">
                         <div className="centerOfParent gap-4">
-                            <p className='sm:text-xl font-semibold'>{title}</p>
+                            <h2 className='sm:text-xl font-semibold'>{title}</h2>
                         </div>
                         <Link href={`/category-${categories[0]?.slug}-apparel?sort=${url}`}
                               className='centerOfParent sm:text-base text-[12px] gap-2 text-primary-600 whitespace-nowrap'>مشاهده
@@ -104,7 +104,7 @@ const MostSell = ({url, title, data}) => {
                                                 className="centerOfParent sm:max-w-[254px] max-w-[210px] w-full sm:h-[300px] h-[200px] flex-shrink-0 rounded-lg mix-blend-darken">
                                                 <Image
                                                     src={p.image}
-                                                    alt="Responsive example"
+                                                    alt={p.name}
                                                     width={0}
                                                     height={0} sizes='100vw'
                                                     className='w-full h-full object-cover'/>

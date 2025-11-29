@@ -30,7 +30,7 @@ const Stories = ({data: Stories = []}) => {
         <>
             <div className="container flex flex-col gap-4 mt-10">
                 <div className="flex items-center justify-between gap-4">
-                    <p className='text-primary-950 font-semibold sm:text-base text-sm'>استوری ها</p>
+                    <h2 className='text-primary-950 font-semibold sm:text-base text-sm'>استوری ها</h2>
                     <div className="centerOfParent gap-4">
                         {isScrollable && (
                             <>

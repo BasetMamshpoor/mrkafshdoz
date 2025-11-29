@@ -15,7 +15,7 @@ const Banner = ({data: banners}) => {
                                           key={b.id}>
                                 <Image src={b.src} placeholder='blur' blurDataURL='/Images/placeholder-1.png' width={0}
                                        height={0} sizes='100vw'
-                                       className='w-full h-full object-cover hover:scale-105 duration-300' alt=''/>
+                                       className='w-full h-full object-cover hover:scale-105 duration-300' alt='کفش'/>
                             </Link>)
                         })}
                     </div>
