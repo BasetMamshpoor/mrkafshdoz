@@ -113,8 +113,8 @@ const BlogDetail = () => {
                     <div className="bg-white rounded-2xl shadow-lg p-8">
                         <h3 className="text-2xl font-bold text-gray-800 mb-6">مقالات مرتبط</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {blog.anther.map(blog=>(
-                                <Link href={`/blogs/${blog.id}`} className="group">
+                            {blog.anther.map(blog => (
+                                <Link key={blog.id} href={`/blogs/${blog.id}`} className="group">
                                     <div
                                         className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 border border-gray-100">
                                         {/* Image Container */}
@@ -130,7 +130,8 @@ const BlogDetail = () => {
 
                                         {/* Content */}
                                         <div className="p-6">
-                                            <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
+                                            <div
+                                                className="flex items-center justify-between text-sm text-gray-500 mb-3">
                                                 <div className="flex items-center space-x-4 space-x-reverse">
                                                     <div className="flex items-center">
                                                         <FaCalendarAlt className="ml-1 text-blue-500"/>
@@ -152,7 +153,8 @@ const BlogDetail = () => {
                                             </h2>
 
                                             {/* Author and Read More */}
-                                            <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                                            <div
+                                                className="flex items-center justify-between pt-4 border-t border-gray-100">
                                                 <div className="flex items-center space-x-3 space-x-reverse">
                                                     <button
                                                         className="text-gray-400 hover:text-blue-600 transition-colors duration-300">

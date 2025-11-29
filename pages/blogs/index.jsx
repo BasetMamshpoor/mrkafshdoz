@@ -17,7 +17,7 @@ const BlogListPublic = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {blogs && blogs.length ? (
                     blogs.map((blog) => (
-                        <Link href={`/blogs/${blog.id}`} className="group">
+                        <Link key={blog.id} href={`/blogs/${blog.id}`} className="group">
                             <div
                                 className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 border border-gray-100">
                                 {/* Image Container */}
