@@ -15,6 +15,7 @@ import {
 import {DateObject} from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
+import Head from "next/head";
 
 const BlogDetail = () => {
     const {query} = useRouter();
@@ -28,6 +29,9 @@ const BlogDetail = () => {
     return (
         <div className="min-h-screen bg-gray-50" dir="rtl">
             {/* Header */}
+            <Head>
+                <title>{blog.title}</title>
+            </Head>
             <div className="bg-white shadow-sm border-b">
                 <div className="container mx-auto px-4 py-4">
                     <div className="flex items-center justify-between">

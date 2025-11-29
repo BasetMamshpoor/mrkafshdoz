@@ -16,8 +16,6 @@ import {HeroUIProvider} from "@heroui/react"
 axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`
 
 export const metadata = {
-    title: "آقای کفشدوز | خرید کفش مردانه با بهترین قیمت و ارسال سریع",
-    description: "از تولید به مصرف",
     verification: {
         google: "6mjeZ7kyFvTxiiwPJyX47W0w438CgTECiBH_FYnm4fY",
     },
@@ -39,6 +37,8 @@ export default function App({Component, pageProps}) {
                                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                                 <link rel="icon" href="./favicon.ico" sizes="any"/>
                                 <link rel="canonical" href="https://mrkafshdoz.com/"/>
+                                <title>آقای کفشدوز</title>
+                                <meta name="description" content="خرید کفش مردانه با بهترین قیمت و ارسال سریع"/>
                             </Head>
                             {!withoutNavbar_Footer && (isMatch ? <MobileNavbar/> : <Navbar/>)}
                             <NextNProgress/>
